@@ -1,0 +1,15 @@
+const allSubjects = [
+  artLiterature,
+  filmTv,
+  music,
+  technology,
+  cultureTradition,
+  foodDrink,
+  generalKnowledge,
+  geography,
+  history,
+  maths,
+  nature,
+  science,
+  sports,
+];
