@@ -348,4 +348,155 @@ const geography = [
     q: "What is the capital city of India?",
     options: ["Mumbai", "Kolkata", "New Delhi", "Bengaluru"],
     answer: 2
-  }]
+  },
+  {
+    q: "Which mountain range forms the natural border between France and Spain?",
+    options: ["The Alps", "The Pyrenees", "The Massif Central", "The Cantabrian Mountains"],
+    answer: 1
+  },
+  {
+    q: "What is the capital city of Croatia?",
+    options: ["Split", "Dubrovnik", "Zagreb", "Rijeka"],
+    answer: 2
+  },
+  {
+    q: "Which African lake is the chief reservoir of the Nile and the largest lake in Africa?",
+    options: ["Lake Tanganyika", "Lake Malawi", "Lake Victoria", "Lake Chad"],
+    answer: 2
+  },
+  {
+    q: "What is the capital city of the Czech Republic?",
+    options: ["Brno", "Ostrava", "Prague", "Plzeň"],
+    answer: 2
+  },
+  {
+    q: "Which bay between western France and northern Spain is known for its rough seas?",
+    options: ["Bay of Bengal", "Bay of Biscay", "Gulf of Bothnia", "Gulf of Lyon"],
+    answer: 1
+  },
+  {
+    q: "What is the capital city of Morocco?",
+    options: ["Casablanca", "Marrakesh", "Rabat", "Fes"],
+    answer: 2
+  },
+  {
+    q: "In which country would you find the Black Forest mountain region?",
+    options: ["Austria", "Switzerland", "Germany", "France"],
+    answer: 2
+  },
+  {
+    q: "What is the capital city of Thailand?",
+    options: ["Chiang Mai", "Phuket", "Bangkok", "Pattaya"],
+    answer: 2
+  },
+  {
+    q: "Which body of water separates Ireland from Great Britain?",
+    options: ["North Sea", "English Channel", "Irish Sea", "Celtic Sea"],
+    answer: 2
+  },
+  {
+    q: "What is the capital city of Romania?",
+    options: ["Cluj-Napoca", "Timișoara", "Bucharest", "Iași"],
+    answer: 2
+  },
+  {
+    q: "Which country is completely surrounded by South Africa?",
+    options: ["Eswatini", "Lesotho", "Botswana", "Namibia"],
+    answer: 1
+  },
+  {
+    q: "What is the capital city of Kenya?",
+    options: ["Mombasa", "Kisumu", "Nairobi", "Nakuru"],
+    answer: 2
+  },
+  {
+    q: "Which island nation off the coast of East Africa has Port Louis as its capital?",
+    options: ["Seychelles", "Comoros", "Mauritius", "Madagascar"],
+    answer: 2
+  },
+  {
+    q: "What is the capital city of Vietnam?",
+    options: ["Ho Chi Minh City", "Da Nang", "Hanoi", "Haiphong"],
+    answer: 2
+  },
+  {
+    q: "Which sea lies directly north of Poland and east of Sweden?",
+    options: ["North Sea", "White Sea", "Baltic Sea", "Barents Sea"],
+    answer: 2
+  },
+  {
+    q: "What is the capital city of Iceland?",
+    options: ["Akureyri", "Keflavík", "Reykjavík", "Kópavogur"],
+    answer: 2
+  },
+  {
+    q: "In which mountain range is the Matterhorn located?",
+    options: ["The Pyrenees", "The Dolomites", "The Alps", "The Carpathians"],
+    answer: 2
+  },
+  {
+    q: "What is the capital city of Peru?",
+    options: ["Cusco", "Arequipa", "Lima", "Trujillo"],
+    answer: 2
+  },
+  {
+    q: "Which river is the longest in the world?",
+    options: ["Amazon River", "Nile River", "Yangtze River", "Mississippi River"],
+    answer: 1
+  },
+  {
+    q: "What is the capital city of Ukraine?",
+    options: ["Kharkiv", "Odesa", "Kyiv", "Lviv"],
+    answer: 2
+  },
+  {
+    q: "Which group of Mediterranean islands includes Mallorca, Menorca, Ibiza, and Formentera?",
+    options: ["Canary Islands", "Cyclades", "Balearic Islands", "Ionian Islands"],
+    answer: 2
+  },
+  {
+    q: "What is the capital city of South Korea?",
+    options: ["Busan", "Incheon", "Seoul", "Daegu"],
+    answer: 2
+  },
+  {
+    q: "Which narrow stretch of water separates the south coast of England from the Isle of Wight?",
+    options: ["English Channel", "The Solent", "Menai Strait", "Thames Estuary"],
+    answer: 1
+  },
+  {
+    q: "What is the capital city of China?",
+    options: ["Shanghai", "Guangzhou", "Beijing", "Shenzhen"],
+    answer: 2
+  },
+  {
+    q: "Which microstate is entirely surrounded by the city of Rome?",
+    options: ["San Marino", "Monaco", "Vatican City", "Andorra"],
+    answer: 2
+  },
+  {
+    q: "What is the capital city of Mexico?",
+    options: ["Guadalajara", "Monterrey", "Mexico City", "Puebla"],
+    answer: 2
+  },
+  {
+    q: "Which European river passes through Frankfurt, Germany?",
+    options: ["Rhine", "Main", "Danube", "Elbe"],
+    answer: 1
+  },
+  {
+    q: "What is the capital city of Colombia?",
+    options: ["Medellín", "Cali", "Bogotá", "Cartagena"],
+    answer: 2
+  },
+  {
+    q: "Which country is known as the 'Home of the Fjords' in Northern Europe?",
+    options: ["Sweden", "Finland", "Norway", "Denmark"],
+    answer: 2
+  },
+  {
+    q: "What is the capital city of Slovakia?",
+    options: ["Kosice", "Prešov", "Bratislava", "Nitra"],
+    answer: 2
+  }
+];
