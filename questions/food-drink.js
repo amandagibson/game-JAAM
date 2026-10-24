@@ -156,7 +156,8 @@ const food = [
   },
   {
     q: "Which animal milk is traditionally used to make authentic Greek Feta cheese?",
-    options: ["Cow's milk", "Sheep and Goat milk", "Camel milk", "Water Buffalo milk"], answer: 1
+    options: ["Cow's milk", "Sheep and Goat milk", "Camel milk", "Water Buffalo milk"],
+    answer: 1
   },
   {
     q: "What citrus fruit is traditionally used in a classic Whiskey Sour cocktail?",
