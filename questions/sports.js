@@ -101,7 +101,8 @@ const sports = [
   },
   {
     q: "What distance is covered in one lap of a standard Olympic outdoor running track?",
-    options: ["200 meters", "400 meters", "800 meters", "500 meters"], answer: 1
+    options: ["200 meters", "400 meters", "800 meters", "500 meters"],
+    answer: 1
   },
   {
     q: "Which country won the inaugural FIFA Women's World Cup in 1991?",
