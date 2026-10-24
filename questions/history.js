@@ -156,7 +156,8 @@ const history = [
     },
     {
         q: "Who was the first President of the United States?",
-        options: ["Thomas Jefferson", "George Washington", "Abraham Lincoln", "John Adams"], answer: 1
+        options: ["Thomas Jefferson", "George Washington", "Abraham Lincoln", "John Adams"],
+        answer: 1
     },
     {
         q: "Which naval battle in 1805 saw Admiral Nelson defeat the combined French and Spanish fleets?",
