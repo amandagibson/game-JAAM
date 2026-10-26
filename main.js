@@ -26,4 +26,5 @@ const allSubjects = [
   nature,
   science,
   sports,
+  videoGames,
 ];
