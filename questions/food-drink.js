@@ -1,4 +1,4 @@
-const food = [
+const foodDrink = [
   {
     q: "Which Italian blue cheese is made from unskimmed cow's milk and named after a town near Milan?",
     options: ["Roquefort", "Gorgonzola", "Stilton", "Feta"],

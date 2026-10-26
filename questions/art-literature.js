@@ -1,4 +1,4 @@
-const art = [
+const artLiterature = [
   {
     q: "Which Italian artist painted the ceiling of the Sistine Chapel in Rome?",
     options: ["Leonardo da Vinci", "Michelangelo", "Raphael", "Donatello"],

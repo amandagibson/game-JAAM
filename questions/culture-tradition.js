@@ -1,4 +1,4 @@
-const culture = [
+const cultureTradition = [
     {
         q: "In which European country is the traditional beer festival Oktoberfest held annually?",
         options: ["Austria", "Germany", "Switzerland", "Czech Republic"],
