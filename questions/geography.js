@@ -1,4 +1,4 @@
 const geography = {
-  name: "Geography",
+  name: 'Geography',
   questions: [],
 };

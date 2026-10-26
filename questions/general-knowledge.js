@@ -1,4 +1,4 @@
 const generalKnowledge = {
-  name: "General Knowledge",
+  name: 'General Knowledge',
   questions: [],
 };

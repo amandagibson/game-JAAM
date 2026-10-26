@@ -1,4 +1,4 @@
 const nature = {
-  name: "Nature",
+  name: 'Nature',
   questions: [],
 };

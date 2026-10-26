@@ -1,4 +1,4 @@
 const cultureTradition = {
-  name: "Culture & Tradition",
+  name: 'Culture & Tradition',
   questions: [],
 };

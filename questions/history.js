@@ -1,4 +1,4 @@
 const history = {
-  name: "History",
+  name: 'History',
   questions: [],
 };

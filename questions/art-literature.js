@@ -1,4 +1,4 @@
 const artLiterature = {
-  name: "Art & Literature",
+  name: 'Art & Literature',
   questions: [],
 };

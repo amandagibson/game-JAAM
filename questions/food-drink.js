@@ -1,4 +1,4 @@
 const foodDrink = {
-  name: "Food & Drink",
+  name: 'Food & Drink',
   questions: [],
 };
