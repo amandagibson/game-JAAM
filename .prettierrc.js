@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 module.exports = {
   tabWidth: 2,
   useTabs: false,
   semi: true,
   printWidth: 80,
-  trailingComma: 'all',
+  trailingComma: "all",
 };
