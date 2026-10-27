@@ -6,12 +6,4 @@ module.exports = {
   semi: true,
   printWidth: 80,
   trailingComma: 'all',
-  overrides: [
-    {
-      files: '*.{js,ts}',
-      options: {
-        singleQuote: true,
-      },
-    },
-  ],
 };
