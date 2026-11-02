@@ -1,0 +1,15 @@
+export const gameState = {
+  currentLevel: 1,
+  playerMoney: 0,
+  playerLives: 3,
+  highestScore: 0,
+  playerName: "",
+  currentCategory: "",
+  currentCategoryQuestions: [],
+  currentQuestionIndex: 0,
+  activeQuestion: null,
+  timerInterval: null,
+  timeRemaining: 15,
+  wheelRotation: 0,
+  isSpinning: false,
+};
