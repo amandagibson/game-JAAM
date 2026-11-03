@@ -24,6 +24,7 @@ let questionBank = {
 
 let categoryQuestionBank = questionBank[currentCategory] || [];
 let currentCategoryQuestions = [];
+let currentQuestionIndex = 0;
 
 //calculate how many questions based on the level when the number of questions starts at 5 and then increases by 1 every three levels
 function calculateQuestionsPerRound(currentLevel) {
@@ -37,6 +38,7 @@ function generateQuestions(categoryQuestionBank, questionsPerRound) {
     console.log(
       `Found ${categoryQuestionBank.length} questions out of ${categoryQuestionBank.length} available for category: ${currentCategory}`,
     );
+    //build the questions for the round by randomly selecting from the category question bank
     currentCategoryQuestions = categoryQuestionBank
       .sort(() => Math.random() - 0.5)
       .slice(0, questionsPerRound);
@@ -61,16 +63,39 @@ function generateQuestions(categoryQuestionBank, questionsPerRound) {
   return currentCategoryQuestions;
 }
 
-// function renderQuestion() {}
+function renderCurrentQuestion(currentCategoryQuestions) {
+  const currentQuestion = currentCategoryQuestions[currentQuestionIndex];
 
-// function checkAnswer() {}
+  if (!currentQuestion || !currentQuestion.options) {
+    console.log("The round is complete.");
+    return;
+  }
 
-// function nextQuestion() {}
+  console.log("Rendering question:", currentQuestion.q);
+
+  const currentQuestionElement = document.getElementById("current-question");
+  currentQuestionElement.textContent = currentQuestion.q;
+
+  const optionsContainer = document.getElementById("options-container");
+  optionsContainer.innerHTML = "";
+
+  //loop through the options/answers for the current question and create buttons for each
+  currentQuestion.options.forEach((option, optionIndex) => {
+    const optionButton = document.createElement("button");
+    optionButton.textContent = option;
+    optionButton.classList.add("option-button");
+    optionsContainer.appendChild(optionButton);
+  });
+}
+
+// function checkAnswer()
+
+//function nextQuestion()
 
 function startRound() {
   console.log(
     `Starting round ${currentLevel} with ${questionsPerRound} questions and category: ${currentCategory}`,
   );
   generateQuestions(categoryQuestionBank, questionsPerRound);
-  // renderQuestion();
+  renderCurrentQuestion(currentCategoryQuestions);
 }
