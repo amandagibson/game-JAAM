@@ -84,15 +84,24 @@ function renderCurrentQuestion(currentCategoryQuestions) {
     const optionButton = document.createElement("button");
     optionButton.textContent = option;
     optionButton.classList.add("option-button");
+    optionButton.addEventListener("click", () => {
+      handleAnswer(currentQuestion, optionIndex);
+    });
     optionsContainer.appendChild(optionButton);
   });
 }
 
-// function checkAnswer()
-
-//function nextQuestion()
+function handleAnswer(currentQuestion, selectedOptionIndex) {
+  const isCorrect = selectedOptionIndex === currentQuestion.answer;
+  console.log(isCorrect ? "Correct answer." : "Incorrect answer.");
+  // increase the current question index to move to the next question
+  currentQuestionIndex += 1;
+  renderCurrentQuestion(currentCategoryQuestions);
+}
 
 function startRound() {
+  // setting the value to 0 here ensures that the round starts from the first question every time startRound is called
+  currentQuestionIndex = 0;
   console.log(
     `Starting round ${currentLevel} with ${questionsPerRound} questions and category: ${currentCategory}`,
   );
