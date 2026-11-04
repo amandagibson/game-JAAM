@@ -1,7 +1,9 @@
-//  Default game state
+// Default game state with dynamic questionsPerRound
 export const gameState = {
   currentLevel: 1,
-  questionsPerRound: 5,
+  get questionsPerRound() {
+    return 5 + Math.floor((this.currentLevel - 1) / 3);
+  },
   playerMoney: 0,
   playerLives: 3,
   highestScore: 0,
