@@ -21,7 +21,7 @@ export const gameState = {
 //LocalStorage High Score Functions
 // Loads the saved high score when the page initializes
 export function loadHighScore() {
-  const savedScore = localStorage.getItem("quizHighScore");[cite: 22]
+  const savedScore = localStorage.getItem("quizHighScore");
   gameState.highestScore = savedScore ? parseInt(savedScore, 10) : 0;
 }
 
@@ -29,7 +29,7 @@ export function loadHighScore() {
 export function checkAndUpdateHighScore() {
   if (gameState.playerMoney > gameState.highestScore) {
     gameState.highestScore = gameState.playerMoney;
-    localStorage.setItem("quizHighScore", gameState.highestScore);[cite: 22]
+    localStorage.setItem("quizHighScore", gameState.highestScore);
     return true; // a new high score was set
   }
   return false;
@@ -42,7 +42,7 @@ export function shuffleArray(array) {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];[cite: 20]
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
 }
