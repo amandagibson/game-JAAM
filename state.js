@@ -18,8 +18,22 @@ export const gameState = {
   isSpinning: false,
 };
 
-//  When calculating the number of questions per round, it will need to have this syntax!
-//  questionsPerRound = 5 + Math.floor((currentLevel - 1) / 3),
+//LocalStorage High Score Functions
+// Loads the saved high score when the page initializes
+export function loadHighScore() {
+  const savedScore = localStorage.getItem("quizHighScore");[cite: 22]
+  gameState.highestScore = savedScore ? parseInt(savedScore, 10) : 0;
+}
+
+// Checks if current money beats highestScore and updates localStorage
+export function checkAndUpdateHighScore() {
+  if (gameState.playerMoney > gameState.highestScore) {
+    gameState.highestScore = gameState.playerMoney;
+    localStorage.setItem("quizHighScore", gameState.highestScore);[cite: 22]
+    return true; // Indicates a new high score was set
+  }
+  return false;
+}
 
 //  Call this function to reset the game state (ex: when starting a new game)
 export function resetGameState() {
