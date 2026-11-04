@@ -35,6 +35,18 @@ export function checkAndUpdateHighScore() {
   return false;
 }
 
+// Utilities
+
+// Fisher-Yates Shuffle Function to randomize array order without changing original arrays
+export function shuffleArray(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];[cite: 20]
+  }
+  return arr;
+}
+
 //  Call this function to reset the game state (ex: when starting a new game)
 export function resetGameState() {
   gameState.currentLevel = 1;
