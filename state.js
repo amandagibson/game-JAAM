@@ -30,7 +30,7 @@ export function checkAndUpdateHighScore() {
   if (gameState.playerMoney > gameState.highestScore) {
     gameState.highestScore = gameState.playerMoney;
     localStorage.setItem("quizHighScore", gameState.highestScore);[cite: 22]
-    return true; // Indicates a new high score was set
+    return true; // a new high score was set
   }
   return false;
 }
