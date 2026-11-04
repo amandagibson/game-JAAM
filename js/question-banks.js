@@ -13,6 +13,7 @@ import { sports } from "../questions/sports.js";
 import { technology } from "../questions/technology.js";
 import { videoGames } from "../questions/videogames.js";
 
+// FIX DOUBLE QUOTATIONS THAT WERE REMOVED BY PRETTIER!
 export const questionBanks = {
   "Art & Literature": { questions: artLiterature, color: "#e74c3c" },
   "Culture & Tradition": { questions: cultureTradition, color: "#8e44ad" },
