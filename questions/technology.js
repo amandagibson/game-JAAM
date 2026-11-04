@@ -1,4 +1,4 @@
-const technology = [
+export const technology = [
   {
     q: "What does CPU stand for?",
     options: [
