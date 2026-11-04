@@ -25,6 +25,7 @@ let questionBank = {
 let categoryQuestionBank = questionBank[currentCategory] || [];
 let currentCategoryQuestions = [];
 let currentQuestionIndex = 0;
+let playerLives = 3;
 
 //calculate how many questions based on the level when the number of questions starts at 5 and then increases by 1 every three levels
 function calculateQuestionsPerRound(currentLevel) {
@@ -59,15 +60,17 @@ function generateQuestions(categoryQuestionBank, questionsPerRound) {
       `Not enough questions in category "${currentCategory}". Requested: ${questionsPerRound}, Available: ${currentCategoryQuestions.length}`,
     );
   }
-
   return currentCategoryQuestions;
 }
 
 function renderCurrentQuestion(currentCategoryQuestions) {
   const currentQuestion = currentCategoryQuestions[currentQuestionIndex];
 
+  //TODO: refactor level completion logic into a separate function to keep renderCurrentQuestion focused on rendering the question and not managing game state
   if (!currentQuestion || !currentQuestion.options) {
     console.log("The round is complete.");
+    currentLevel += 1;
+    startRound();
     return;
   }
 
@@ -80,6 +83,7 @@ function renderCurrentQuestion(currentCategoryQuestions) {
   optionsContainer.innerHTML = "";
 
   //loop through the options/answers for the current question and create buttons for each
+  //TODO: **consider** refactoring this into a separate function to keep renderCurrentQuestion focused on rendering the question and not the options. maybe best to keep it here for now since the options are part of the question rendering
   currentQuestion.options.forEach((option, optionIndex) => {
     const optionButton = document.createElement("button");
     optionButton.textContent = option;
@@ -94,6 +98,15 @@ function renderCurrentQuestion(currentCategoryQuestions) {
 function handleAnswer(currentQuestion, selectedOptionIndex) {
   const isCorrect = selectedOptionIndex === currentQuestion.answer;
   console.log(isCorrect ? "Correct answer." : "Incorrect answer.");
+  //TODO: pull this logic out into another function for playerLives management and game over handling
+  if (!isCorrect) {
+    console.log(`Incorrect answer. Lives remaining: ${playerLives}`);
+    if (playerLives <= 0) {
+      console.log("Game over.");
+      return;
+    }
+    playerLives -= 1;
+  }
   // increase the current question index to move to the next question
   currentQuestionIndex += 1;
   renderCurrentQuestion(currentCategoryQuestions);
