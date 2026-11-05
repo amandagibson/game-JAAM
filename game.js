@@ -34,15 +34,25 @@ function calculateQuestionsPerRound(currentLevel) {
   return (questionsPerRound = baseQuestions + additionalQuestions);
 }
 
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 function generateQuestions(categoryQuestionBank, questionsPerRound) {
   if (categoryQuestionBank && questionsPerRound > 0) {
     console.log(
-      `Found ${categoryQuestionBank.length} questions out of ${categoryQuestionBank.length} available for category: ${currentCategory}`,
+      `Found ${questionsPerRound.length} questions out of ${categoryQuestionBank.length} available for category: ${currentCategory}`,
     );
-    //build the questions for the round by randomly selecting from the category question bank
-    currentCategoryQuestions = categoryQuestionBank
-      .sort(() => Math.random() - 0.5)
-      .slice(0, questionsPerRound);
+    //build a randomized list of questions for the round using the Fisher-Yates shuffle algo
+    currentCategoryQuestions = shuffleArray(categoryQuestionBank).slice(
+      0,
+      questionsPerRound,
+    );
     console.log(
       `Selected the following ${questionsPerRound} questions for level ${currentLevel}:`,
       currentCategoryQuestions,
@@ -105,7 +115,6 @@ function handleAnswer(currentQuestion, selectedOptionIndex) {
       console.log("Game over.");
       return;
     }
-    playerLives -= 1;
   }
   // increase the current question index to move to the next question
   currentQuestionIndex += 1;
