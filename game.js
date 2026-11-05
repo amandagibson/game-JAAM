@@ -1,4 +1,4 @@
-// clean these up when refactoring
+//move to state
 let currentLevel = 1;
 let playerLives = 3;
 let currentCategory = "artLiterature"; //default category for testing, should be set by the wheel spin
@@ -6,26 +6,26 @@ let questionsPerRound = 5;
 let currentCategoryQuestions = [];
 let currentQuestionIndex = 0;
 
-//map the category from the wheel spin to the corresponding question bank
-let questionBank = {
-  artLiterature,
-  filmTv,
-  music,
-  technology,
-  cultureTradition,
-  foodDrink,
-  generalKnowledge,
-  geography,
-  history,
-  maths,
-  nature,
-  science,
-  sports,
-  videoGames,
+//map the category to the corresponding question bank
+const questionBank = {
+  artLiterature: artLiterature,
+  filmTv: filmTv,
+  music: music,
+  technology: technology,
+  cultureTradition: cultureTradition,
+  foodDrink: foodDrink,
+  generalKnowledge: generalKnowledge,
+  geography: geography,
+  history: history,
+  maths: maths,
+  nature: nature,
+  science: science,
+  sports: sports,
+  videoGames: videoGames,
 };
 
 //calculate how many questions based on the level when the number of questions starts at 5 and then increases by 1 every three levels
-function calculateQuestionsPerRound(currentLevel) {
+function calculateQuestionsPerRound() {
   const baseQuestions = 5;
   const additionalQuestions = Math.floor((currentLevel - 1) / 3);
   return (questionsPerRound = baseQuestions + additionalQuestions);
@@ -40,7 +40,7 @@ function shuffleArray(array) {
   return shuffled;
 }
 
-function generateQuestions(categoryQuestionBank, questionsPerRound) {
+function generateQuestions(categoryQuestionBank) {
   if (categoryQuestionBank.length > 0 && questionsPerRound > 0) {
     console.log(
       `Found ${categoryQuestionBank.length} available questions for category: ${currentCategory}`,
@@ -72,7 +72,7 @@ function generateQuestions(categoryQuestionBank, questionsPerRound) {
   return currentCategoryQuestions;
 }
 
-function renderCurrentQuestion(currentCategoryQuestions) {
+function renderCurrentQuestion() {
   const currentQuestion = currentCategoryQuestions[currentQuestionIndex];
 
   if (!currentQuestion || !currentQuestion.options) {
@@ -146,7 +146,8 @@ function startRound() {
   console.log(
     `Starting round ${currentLevel} with ${playerLives} lives and ${questionsPerRound} questions from the category: ${currentCategory}`,
   );
+  //generate the questions for the round here so they are fresh
   const categoryQuestionBank = questionBank[currentCategory] || [];
-  generateQuestions(categoryQuestionBank, questionsPerRound);
-  renderCurrentQuestion(currentCategoryQuestions);
+  generateQuestions(categoryQuestionBank);
+  renderCurrentQuestion();
 }
