@@ -28,6 +28,7 @@
     <!-- keep main.js at the end of the scripts so it loads last -->
     <script defer src="main.js"></script>
   </head>
+
   <body>
     <video autoplay muted loop playsinline id="background-video">
       <source src="assets/videos/245751.mp4" type="video/mp4" />
@@ -39,13 +40,15 @@
       class="game-logo"
     />
 
-    <h1>Quiz Game</h1>
+    <input type="text" id="playerName" placeholder="Enter your name" />
+
+    <button id="startGame">Start Game</button>
 
     <div id="highestScoreDisplay">
-      <h3>Highest Score:<span id="highestScore">0</span></h3>
+      <h3>
+        Highest Score:
+        <span id="highestScore">0</span>
+      </h3>
     </div>
-
-    <input type="text" id="playerName" placeholder="Enter your name" />
-    <button id="startGame">Start Game</button>
   </body>
 </html>
