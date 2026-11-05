@@ -3,6 +3,7 @@ body {
   margin: 0;
 }
 
+/* background-video Desktop */
 #background-video {
   position: fixed;
   top: 0;
@@ -10,5 +11,52 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   z-index: -1;
+}
+
+/* background-video Tablet */
+@media (min-width: 481px) and (max-width: 1024px) {
+  #background-video {
+    object-fit: cover;
+    object-position: 85% center;
+  }
+}
+
+/* background-video Mobile */
+@media (max-width: 480px) {
+  #background-video {
+    object-fit: cover;
+    object-position: 85% center;
+  }
+}
+
+/* Logo Desktop */
+.game-logo {
+  width: 1000px;
+  max-width: 90%;
+  height: auto;
+  display: block;
+  margin: 17px 0 0 10px;
+  transform: translateY(80px);
+}
+
+/* Logo Tablet */
+@media (max-width: 768px) {
+  .game-logo {
+    width: 100%;
+    max-width: 900px;
+    margin: 10px auto 0;
+    transform: translateY(20px);
+  }
+}
+
+/* Logo Mobile */
+@media (max-width: 480px) {
+  .game-logo {
+    width: 100%;
+    max-width: 750px;
+    margin: 100px auto 0;
+    transform: none;
+  }
 }
