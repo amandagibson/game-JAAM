@@ -1,4 +1,4 @@
-const filmTv = [
+export const filmTv = [
   {
     q: "Who directed the 1975 thriller Jaws?",
     options: [

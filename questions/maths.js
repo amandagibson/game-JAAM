@@ -1,4 +1,4 @@
-const maths = [
+export const maths = [
   {
     q: "What is 5 + 7?",
     options: ["10", "12", "13", "14"],

@@ -1,4 +1,4 @@
-const sports = [
+export const sports = [
   {
     q: "How long is a standard outdoor marathon?",
     options: ["10 miles", "26.2 miles", "13.1 miles", "50 kilometers"],
