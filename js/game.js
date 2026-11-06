@@ -79,27 +79,18 @@ function renderCurrentQuestion() {
     handleRoundComplete();
     return;
   }
-  console.log(
-    `Rendering index ${currentQuestionIndex} question:`,
-    currentQuestion.q,
-  );
 
-  const currentQuestionElement = document.getElementById("current-question");
-  currentQuestionElement.textContent = currentQuestion.q;
-
-  const optionsContainer = document.getElementById("options-container");
-  optionsContainer.innerHTML = "";
-
-  //loop through the options/answers for the current question and create buttons for each
-  currentQuestion.options.forEach((option, optionIndex) => {
-    const optionButton = document.createElement("button");
-    optionButton.textContent = option;
-    optionButton.classList.add("option-button");
-    optionButton.addEventListener("click", () => {
-      handleAnswer(currentQuestion, optionIndex);
-    });
-    optionsContainer.appendChild(optionButton);
+  renderHud({
+    level: currentLevel,
+    category: currentCategory,
+    questionNumber: currentQuestionIndex + 1,
+    totalQuestions: questionsPerRound,
+    lives: playerLives,
   });
+
+  renderQuestion(currentQuestion, (optionIndex) =>
+    handleAnswer(currentQuestion, optionIndex),
+  );
 }
 
 function handleAnswer(currentQuestion, selectedOptionIndex) {
