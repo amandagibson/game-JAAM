@@ -142,7 +142,7 @@ function handleRoundComplete() {
 function startRound() {
   // setting the value to 0 here ensures that the round starts from the first question every time startRound is called
   currentQuestionIndex = 0;
-  questionsPerRound = calculateQuestionsPerRound(currentLevel);
+  questionsPerRound = calculateQuestionsPerRound();
   console.log(
     `Starting round ${currentLevel} with ${playerLives} lives and ${questionsPerRound} questions from the category: ${currentCategory}`,
   );
