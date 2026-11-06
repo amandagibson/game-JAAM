@@ -48,6 +48,21 @@
   transform: translateY(0);
 }
 
+.option-btn.correct {
+  border-color: var(--correct);
+  background: #12382b;
+}
+
+.option-btn.wrong {
+  border-color: var(--wrong);
+  background: #3a1520;
+}
+
+.option-btn:disabled {
+  cursor: default;
+  transform: none;
+}
+
 .round-info {
   font-family: var(--font-sans);
   font-size: 1.1rem;

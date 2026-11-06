@@ -1,3 +1,5 @@
+const FEEDBACK_DELAY_MS = 500;
+
 //move to state
 let currentLevel = 1;
 let playerLives = 3;
@@ -60,8 +62,8 @@ function generateQuestions(categoryQuestionBank) {
       "Current category or number of questions is not set. Cannot generate questions.",
       { currentCategory },
       { questionsPerRound },
-      //TODO: what behavior should happen here? Should the game end, or should it just skip to the next round? For now, just log an error and return an empty array.
     );
+    startRound(); //restart the round and hope that questions are available (could turn into a loop), or maybe present the wheel spin again to select a new category
   }
 
   if (currentCategoryQuestions.length < questionsPerRound) {
@@ -88,28 +90,35 @@ function renderCurrentQuestion() {
     lives: playerLives,
   });
 
-  renderQuestion(currentQuestion, (optionIndex) =>
-    handleAnswer(currentQuestion, optionIndex),
+  renderQuestion(currentQuestion, (optionIndex, optionButton) =>
+    handleAnswer(currentQuestion, optionIndex, optionButton),
   );
 }
 
-function handleAnswer(currentQuestion, selectedOptionIndex) {
+function handleAnswer(currentQuestion, selectedOptionIndex, optionButton) {
   const isCorrect = selectedOptionIndex === currentQuestion.answer;
   console.log(isCorrect ? "Correct answer." : "Incorrect answer.");
 
+  lockOptions();
+  markAnswer(optionButton, isCorrect);
+
   if (!isCorrect) {
     loseLife();
+  }
+
+  setTimeout(() => {
     if (isGameOver()) {
       console.log("Game over.");
       return;
     }
-  }
-  currentQuestionIndex += 1;
-  renderCurrentQuestion(currentCategoryQuestions);
+    currentQuestionIndex += 1;
+    renderCurrentQuestion();
+  }, FEEDBACK_DELAY_MS);
 }
 
 function loseLife() {
   playerLives -= 1;
+  renderLives(playerLives);
   console.log(`Lives remaining: ${playerLives}`);
 }
 
@@ -120,12 +129,12 @@ function isGameOver() {
 function handleRoundComplete() {
   console.log("The round is complete.");
   currentLevel += 1;
+  //reset the round state for the next round
+  // resetRoundState();
   //return to the wheel spin to select a new category for the next round
   console.log(
     `Level up! Now at level ${currentLevel}. Returning to wheel spin for next category selection.`,
   );
-  //reset the round state for the next round
-  // resetRoundState();
 }
 
 //TODO: this is the conneting point from the wheel spin to the start of a new round

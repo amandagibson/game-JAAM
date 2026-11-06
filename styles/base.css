@@ -13,6 +13,9 @@
   --red-600: #c1272d; /* heart */
 
   --font-sans: "Inter", system-ui, sans-serif;
+
+  --correct: #3ddc97;
+  --wrong: #ff5c6c;
 }
 
 *,

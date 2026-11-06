@@ -34,7 +34,23 @@ function renderQuestion(question, onAnswer) {
     const optionButton = document.createElement("button");
     optionButton.textContent = option;
     optionButton.classList.add("option-btn");
-    optionButton.addEventListener("click", () => onAnswer(optionIndex));
+    optionButton.addEventListener("click", () =>
+      onAnswer(optionIndex, optionButton),
+    );
     optionsContainer.appendChild(optionButton);
   });
+}
+
+function markAnswer(optionButton, isCorrect) {
+  optionButton.classList.add(isCorrect ? "correct" : "wrong");
+}
+
+function lockOptions() {
+  document
+    .querySelectorAll(".option-btn")
+    .forEach((btn) => (btn.disabled = true));
+}
+
+function renderLives(lives) {
+  document.getElementById("lives-display").textContent = lives;
 }
