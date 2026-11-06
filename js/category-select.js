@@ -65,3 +65,33 @@ export function getCategoryAtPointer() {
   const winningIndex = Math.floor(relativeAngle / sliceAngle);
   return categories[winningIndex];
 }
+
+// Spin animation loop
+export function spinWheel(onComplete) {
+  if (gameState.isSpinning) return;
+
+  gameState.isSpinning = true;
+
+  // Randomize the initial spin speed
+  spinVelocity = Math.random() * 0.2 + 0.3;
+
+  function animate() {
+    spinVelocity *= friction;
+    gameState.wheelRotation += spinVelocity;
+    drawWheel();
+
+    if (spinVelocity > 0.002) {
+      requestAnimationFrame(animate);
+    } else {
+      spinVelocity = 0;
+      gameState.isSpinning = false;
+      const selectedCategory = getCategoryAtPointer();
+      gameState.currentCategory = selectedCategory;
+
+      if (onComplete) {
+        onComplete(selectedCategory);
+      }
+    }
+  }
+  requestAnimationFrame(animate);
+}
