@@ -1,1 +1,36 @@
 /* reset, fonts, colors/variables, body */
+:root {
+  --bg: #0b0617;
+  --accent: #5c38c0; /* primary */
+  --accent-2: #80ecf5; /* secondary */
+
+  /* derived from the palette, not from your list: tweak freely */
+  --surface: #160e2a; /* question card */
+  --surface-raised: #241a3f; /* answer buttons */
+  --surface-hover: #2f2252; /* button hover */
+
+  --text: #f2eefb; /* light text for the dark background */
+  --red-600: #c1272d; /* heart */
+
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

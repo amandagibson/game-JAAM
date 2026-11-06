@@ -1,1 +1,68 @@
 /* question screen, timer, lives, money */
+.question-card {
+  border-radius: 40px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0 0 4rem;
+  font-size: 1.35rem;
+  font-weight: 300;
+}
+
+.question-mark {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent-2);
+}
+
+.option-btn {
+  padding: 1.5rem 1rem;
+  border: 4px solid var(--accent);
+  border-radius: 18px;
+  background: var(--surface-raised);
+  color: var(--text);
+  font: 300 1rem var(--font-sans);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgb(0 0 0 / 0.25);
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+.option-btn:hover,
+.option-btn:focus-visible {
+  background: var(--surface-hover);
+  border-color: var(--accent-2);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.option-btn:active {
+  transform: translateY(0);
+}
+
+.round-info {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.lives {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.lives-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: var(--red-600);
+}
