@@ -8,7 +8,7 @@ const ctx = canvas ? canvas.getContext("2d") : null;
 // Wheel properties
 const categories = Object.keys(questionBanks);
 const numSlices = categories.length;
-const sliceAngles = (2 * Math.PI) / numSlices;
+const sliceAngle = (2 * Math.PI) / numSlices;
 // Wheel size assumes a 400px canvas, we can change this later if needed!
 const centerX = 200;
 const centerY = 200;
@@ -47,4 +47,21 @@ export function drawWheel() {
     ctx.fillText(name, radius - 12, 4);
     ctx.restore();
   });
+}
+
+// Calculating which category is at the top of the wheen (and therefore gets selected!)
+export function getCategoryAtPointer() {
+  // Setting the pointer to be at top (12 o'clock)
+  const pointerAngle = (3 * Math.PI) / 2;
+
+  // Normalize rotation to positive range
+  let normalizedRotation = gameState.wheelRotation % (2 * Math.PI);
+  if (normalizedRotation < 0) normalizedRotation += 2 * Math.PI;
+
+  // Calculate angle difference relative to pointer
+  let relativeAngle = (pointerAngle - normalizedRotation) % (2 * Math.PI);
+  if (relativeAngle < 0) relativeAngle += 2 * Math.PI;
+
+  const winningIndex = Math.floor(relativeAngle / sliceAngle);
+  return categories[winningIndex];
 }
