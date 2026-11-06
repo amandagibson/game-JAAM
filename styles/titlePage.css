@@ -35,7 +35,7 @@ body {
 
   margin: 5px auto 0;
 
-  font-size: clamp(16px, 2.4vw, 24px);
+  font-size: clamp(14px, 2.2vw, 20px);
   font-weight: bold;
   padding: clamp(8px, 1vw, 16px);
 
@@ -63,6 +63,29 @@ button {
 
 button:hover {
   background-color: #392279;
+}
+
+/* Highest Score Display */
+#highestScoreDisplay {
+  position: static;
+  text-align: center;
+  width: 250px;
+  box-sizing: border-box;
+  margin: 200px auto 40px;
+  padding: 4px;
+  color: #ffffff;
+  background-color: #170e32;
+}
+
+#highestScoreDisplay p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#highestScore {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 /* Background Video-Tablet */
@@ -128,5 +151,29 @@ button:hover {
     padding: 14px;
     font-size: 16px;
     margin-top: 35px;
+  }
+}
+
+/* Highest Score-Tablet */
+@media (min-width: 481px) and (max-width: 1024px) {
+  #highestScoreDisplay {
+    width: 220px;
+    margin-top: 100px;
+  }
+}
+
+/* Highest Score-Mobile */
+@media (max-width: 480px) {
+  #highestScoreDisplay {
+    width: 180px;
+    margin-top: 150px;
+  }
+
+  #highestScoreDisplay p {
+    font-size: 14px;
+  }
+
+  #highestScore {
+    font-size: 20px;
   }
 }
