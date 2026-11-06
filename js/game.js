@@ -32,7 +32,7 @@ const questionBank = {
 function calculateQuestionsPerRound() {
   const baseQuestions = 5;
   const additionalQuestions = Math.floor((currentLevel - 1) / 3);
-  return (questionsPerRound = baseQuestions + additionalQuestions);
+  return baseQuestions + additionalQuestions;
 }
 
 function shuffleArray(array) {
@@ -65,7 +65,8 @@ function generateQuestions(categoryQuestionBank) {
       { currentCategory },
       { questionsPerRound },
     );
-    startRound(); //restart the round and hope that questions are available (could turn into a loop), or maybe present the wheel spin again to select a new category
+    //TODO: present the wheel spin again to select a new category
+    // spinWheel();
   }
 
   if (currentCategoryQuestions.length < questionsPerRound) {
@@ -88,7 +89,7 @@ function renderCurrentQuestion() {
     level: currentLevel,
     category: currentCategory,
     questionNumber: currentQuestionIndex + 1,
-    totalQuestions: questionsPerRound,
+    totalQuestions: currentCategoryQuestions.length,
     lives: playerLives,
     maxLives: STARTING_LIVES,
   });
@@ -152,5 +153,6 @@ function startRound() {
   //generate the questions for the round here so they are fresh
   const categoryQuestionBank = questionBank[currentCategory] || [];
   generateQuestions(categoryQuestionBank);
+  if (currentCategoryQuestions.length === 0) return; // nothing to play, the wheel should pick again here
   renderCurrentQuestion();
 }
