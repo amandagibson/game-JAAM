@@ -1,8 +1,10 @@
+// move these constants to a config file or a separate constants file?
 const FEEDBACK_DELAY_MS = 500;
+const STARTING_LIVES = 3;
 
 //move to state
 let currentLevel = 1;
-let playerLives = 3;
+let playerLives = STARTING_LIVES; // makes a copy of the starting lives on file load
 let currentCategory = "artLiterature"; //default category for testing, should be set by the wheel spin
 let questionsPerRound = 5;
 let currentCategoryQuestions = [];
@@ -88,6 +90,7 @@ function renderCurrentQuestion() {
     questionNumber: currentQuestionIndex + 1,
     totalQuestions: questionsPerRound,
     lives: playerLives,
+    maxLives: STARTING_LIVES,
   });
 
   renderQuestion(currentQuestion, (optionIndex, optionButton) =>
@@ -118,7 +121,7 @@ function handleAnswer(currentQuestion, selectedOptionIndex, optionButton) {
 
 function loseLife() {
   playerLives -= 1;
-  renderLives(playerLives);
+  renderLives(playerLives, STARTING_LIVES);
   console.log(`Lives remaining: ${playerLives}`);
 }
 
