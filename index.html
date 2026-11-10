@@ -6,6 +6,7 @@
     <title>Spintellect</title>
     <link rel="stylesheet" href="styles/base.css" />
     <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/titlepage.css" />
     <link rel="stylesheet" href="styles/game.css" />
 
     <script defer src="questions/art-literature.js"></script>
@@ -23,12 +24,43 @@
     <script defer src="questions/sports.js"></script>
     <script defer src="questions/videogames.js"></script>
     <!-- add new files here -->
+    <script defer src="js/titlepage.js"></script>
     <script defer src="js/quiz-render.js"></script>
     <script defer src="js/game.js"></script>
     <!-- keep main.js at the end of the scripts so it loads last -->
     <script defer src="js/main.js"></script>
   </head>
   <body>
+    <!-- START QUIZ Title Page -->
+    <video autoplay muted loop playsinline id="background-video">
+      <source src="assets/videos/245751.mp4" type="video/mp4" />
+    </video>
+
+    <img
+      src="assets/images/SpintellectLogo.svg"
+      alt="Spintellect logo"
+      class="game-logo"
+    />
+
+    <form id="playerForm">
+      <input
+        type="text"
+        id="playerName"
+        name="playerName"
+        placeholder="Enter your name"
+        required
+      />
+
+      <button type="submit" id="startGame">Start Game</button>
+    </form>
+
+    <div id="highestScoreDisplay">
+      <h3>
+        Highest Score:
+        <span id="highestScore">0</span>
+      </h3>
+    </div>
+
     <div id="game-container">
       <h1 class="visually-hidden">Spintellect</h1>
 
