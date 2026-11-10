@@ -1,9 +1,12 @@
 // Default game state with dynamic questionsPerRound
-export const gameState = {
+const gameState = {
   currentLevel: 1,
+  /*
   get questionsPerRound() {
     return 5 + Math.floor((this.currentLevel - 1) / 3);
   },
+  */
+  questionsPerRound: 5,
   playerMoney: 0,
   playerLives: 3,
   highestScore: 0,
@@ -17,7 +20,7 @@ export const gameState = {
   wheelRotation: 0,
   isSpinning: false,
 };
-
+/*
 //LocalStorage High Score Functions
 // Loads the saved high score when the page initializes
 export function loadHighScore() {
@@ -46,7 +49,7 @@ export function shuffleArray(array) {
   }
   return arr;
 }
-
+*/
 //  Call this function to reset the game state (ex: when starting a new game)
 export function resetGameState() {
   gameState.currentLevel = 1;
