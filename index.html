@@ -24,6 +24,7 @@
     <script defer src="questions/sports.js"></script>
     <script defer src="questions/videogames.js"></script>
     <!-- add new files here -->
+    <script defer src="js/state.js"></script>
     <script defer src="js/titlepage.js"></script>
     <script defer src="js/quiz-render.js"></script>
     <script defer src="js/game.js"></script>
@@ -33,11 +34,11 @@
   <body>
     <!-- START QUIZ Title Page -->
     <video autoplay muted loop playsinline id="background-video">
-      <source src="assets/videos/245751.mp4" type="video/mp4" />
+      <source src="/assets/videos/245751.mp4" type="video/mp4" />
     </video>
 
     <img
-      src="assets/images/SpintellectLogo.svg"
+      src="/assets/images/SpintellectLogo.svg"
       alt="Spintellect logo"
       class="game-logo"
     />
@@ -61,10 +62,10 @@
       </h3>
     </div>
 
+    <!-- START QUIZ SCREEN ELEMENTS -->
+
     <div id="game-container">
       <h1 class="visually-hidden">Spintellect</h1>
-
-      <!-- START QUIZ SCREEN ELEMENTS -->
       <div id="quiz-screen">
         <header class="top-bar">
           <span class="level">Level <span id="level-display"></span></span>
