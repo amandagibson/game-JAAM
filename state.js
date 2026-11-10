@@ -51,7 +51,7 @@ export function shuffleArray(array) {
 }
 */
 //  Call this function to reset the game state (ex: when starting a new game)
-export function resetGameState() {
+function resetGameState() {
   gameState.currentLevel = 1;
   gameState.questionsPerRound = 5;
   gameState.playerMoney = 0;
