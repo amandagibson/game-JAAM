@@ -1,4 +1,4 @@
-export const music = [
+const music = [
   {
     q: "Which band released the 1969 album Abbey Road?",
     options: ["The Rolling Stones", "The Kinks", "The Who", "The Beatles"],

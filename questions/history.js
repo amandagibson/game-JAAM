@@ -1,4 +1,4 @@
-export const history = [
+const history = [
   {
     q: "In which year did World War II end?",
     options: ["1918", "1939", "1945", "1950"],

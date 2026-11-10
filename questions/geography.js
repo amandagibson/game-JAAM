@@ -1,4 +1,4 @@
-export const geography = [
+const geography = [
   {
     q: "What is the capital city of Australia?",
     options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],

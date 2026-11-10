@@ -1,4 +1,4 @@
-export const videoGames = [
+const videoGames = [
   {
     q: "Which iconic character is the primary mascot of Nintendo?",
     options: ["Link", "Mario", "Donkey Kong", "Kirby"],

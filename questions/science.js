@@ -1,4 +1,4 @@
-export const science = [
+const science = [
   {
     q: "What is the chemical symbol for the element Gold?",
     options: ["Ag", "Au", "Fe", "Hg"],

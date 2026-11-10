@@ -1,4 +1,4 @@
-export const generalKnowledge = [
+const generalKnowledge = [
   {
     q: "What is the capital city of France?",
     options: ["Marseille", "Lyon", "Paris", "Nice"],

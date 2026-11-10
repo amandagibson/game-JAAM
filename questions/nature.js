@@ -1,4 +1,4 @@
-export const nature = [
+const nature = [
   {
     q: "Which animal is the largest living creature on Earth?",
     options: ["African Elephant", "Blue Whale", "Colossal Squid", "Giraffe"],
