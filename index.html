@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Name</title>
+    <title>Spintellect</title>
     <link rel="stylesheet" href="styles/base.css" />
     <link rel="stylesheet" href="styles/layout.css" />
     <link rel="stylesheet" href="styles/game.css" />
@@ -22,10 +22,41 @@
     <script defer src="questions/science.js"></script>
     <script defer src="questions/sports.js"></script>
     <script defer src="questions/videogames.js"></script>
-    <!-- add new question files here -->
-
+    <!-- add new files here -->
+    <script defer src="js/quiz-render.js"></script>
+    <script defer src="js/game.js"></script>
     <!-- keep main.js at the end of the scripts so it loads last -->
-    <script defer src="main.js"></script>
+    <script defer src="js/main.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div id="game-container">
+      <h1 class="visually-hidden">Spintellect</h1>
+
+      <!-- START QUIZ SCREEN ELEMENTS -->
+      <div id="quiz-screen">
+        <header class="top-bar">
+          <span class="level">Level <span id="level-display"></span></span>
+
+          <div class="lives">
+            <span>Lives:</span>
+            <div class="hearts" id="lives-display" role="img"></div>
+          </div>
+        </header>
+
+        <section class="question-card">
+          <p class="question">
+            <span class="question-mark" aria-hidden="true">?</span>
+            <span id="question-text"></span>
+          </p>
+          <div id="options-container"></div>
+        </section>
+
+        <footer class="round-info">
+          <span id="category-label"></span>
+          <span id="question-counter"></span>
+        </footer>
+      </div>
+      <!-- END QUIZ SCREEN ELEMENTS -->
+    </div>
+  </body>
 </html>
