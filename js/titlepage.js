@@ -55,7 +55,4 @@ playerForm.addEventListener("submit", (event) => {
   // Save player information
   savePlayers(players);
   localStorage.setItem("currentPlayer", playerKey);
-
-  // Go to the category selection page
-  window.location.href = "category-select.html";
 });
