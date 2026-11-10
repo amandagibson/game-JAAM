@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -27,6 +27,7 @@
 
     <!-- keep main.js at the end of the scripts so it loads last -->
     <script defer src="main.js"></script>
+    <script defer src="titlePage.js"></script>
   </head>
 
   <body>
@@ -40,9 +41,17 @@
       class="game-logo"
     />
 
-    <input type="text" id="playerName" placeholder="Enter your name" />
+    <form id="playerForm">
+      <input
+        type="text"
+        id="playerName"
+        name="playerName"
+        placeholder="Enter your name"
+        required
+      />
 
-    <button id="startGame">Start Game</button>
+      <button type="submit" id="startGame">Start Game</button>
+    </form>
 
     <div id="highestScoreDisplay">
       <h3>
