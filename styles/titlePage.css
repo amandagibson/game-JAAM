@@ -1,0 +1,180 @@
+/* General Settings */
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Background Video-Desktop */
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: -1;
+}
+
+/* Logo-Desktop */
+.game-logo {
+  width: 1000px;
+  max-width: 90%;
+  height: auto;
+  display: block;
+  margin: 97px auto 0;
+}
+
+/* Player Name Input */
+#playerName {
+  position: static;
+  display: block;
+
+  width: min(55%, 245px);
+  box-sizing: border-box;
+
+  margin: 5px auto 0;
+
+  font-size: clamp(14px, 2.2vw, 20px);
+  font-weight: bold;
+  padding: clamp(8px, 1vw, 16px);
+
+  border: 2px solid #28dceb;
+  border-radius: 14px;
+  background-color: white;
+}
+
+button {
+  display: block;
+  width: min(80%, 400px);
+  margin: 24px auto 0;
+  margin-top: 70px;
+  padding: clamp(18px, 1.8vw, 26px);
+  font-size: clamp(16px, 2.4vw, 24px);
+  font-weight: bold;
+  color: white;
+  background-color: #5c38c0;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.65),
+    0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+button:hover {
+  background-color: #392279;
+}
+
+/* Highest Score Display */
+#highestScoreDisplay {
+  position: static;
+  text-align: center;
+  width: 250px;
+  box-sizing: border-box;
+  margin: 200px auto 40px;
+  padding: 4px;
+  color: #ffffff;
+  background-color: #170e32;
+}
+
+#highestScoreDisplay p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#highestScore {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Background Video-Tablet */
+@media (min-width: 481px) and (max-width: 1024px) {
+  #background-video {
+    object-fit: cover;
+    object-position: 85% center;
+  }
+}
+
+/* Background Video-Mobile */
+@media (max-width: 480px) {
+  #background-video {
+    object-fit: cover;
+    object-position: 85% center;
+  }
+}
+
+/* Logo-Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .game-logo {
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto 0;
+  }
+}
+
+/* Logo-Mobile */
+@media (max-width: 768px) {
+  .game-logo {
+    width: 100%;
+    max-width: 750px;
+    margin: 200px auto 0;
+  }
+}
+
+/* Player Name Input-Mobile */
+@media (max-width: 480px) {
+  #playerName {
+    width: 40%;
+    max-width: 180px;
+    margin-top: 25px;
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+/* CTA Button-Tablet */
+@media (min-width: 481px) and (max-width: 1024px) {
+  button {
+    width: min(70%, 340px);
+    padding: 18px;
+    font-size: 20px;
+    margin-top: 50px;
+  }
+}
+
+/* CTA Button-Mobile */
+@media (max-width: 480px) {
+  button {
+    width: 65%;
+    max-width: 260px;
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 35px;
+  }
+}
+
+/* Highest Score-Tablet */
+@media (min-width: 481px) and (max-width: 1024px) {
+  #highestScoreDisplay {
+    width: 220px;
+    margin-top: 100px;
+  }
+}
+
+/* Highest Score-Mobile */
+@media (max-width: 480px) {
+  #highestScoreDisplay {
+    width: 180px;
+    margin-top: 150px;
+  }
+
+  #highestScoreDisplay p {
+    font-size: 14px;
+  }
+
+  #highestScore {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,18 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 230">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M70 58 L79 34 L88 58 L111 67 L88 76 L79 99 L70 76 L47 67Z" fill="#FFD84D" stroke="#FFF0A0" stroke-width="3"></path>
+    <path d="M674 40 L682 21 L690 40 L709 48 L690 56 L682 75 L674 56 L655 48Z" fill="#FF76C8" stroke="#FFE1F5" stroke-width="3"></path>
+    <path d="M135 34 L140 23 L145 34 L156 39 L145 44 L140 55 L135 44 L124 39Z" fill="#63F4E8"></path>
+    <path d="M615 91 L621 77 L627 91 L641 97 L627 103 L621 117 L615 103 L601 97Z" fill="#FFD84D"></path>
+    <path d="M87 155 L92 145 L97 155 L107 160 L97 165 L92 175 L87 165 L77 160Z" fill="#FF76C8"></path>
+    <path d="M696 157 L701 147 L706 157 L716 162 L706 167 L701 177 L696 167 L686 162Z" fill="#63F4E8"></path>
+  </g>
+
+  <g font-family="Arial Black, Trebuchet MS, sans-serif" font-size="87" font-weight="1000" letter-spacing="-4" text-anchor="middle">
+    <text x="380" y="145" fill="#FFFFFF" stroke="#17112D" stroke-width="25" stroke-linejoin="round" paint-order="stroke">Spintellect</text>
+    <text x="380" y="145" fill="#FFFFFF" stroke="#28DCEB" stroke-width="17" stroke-linejoin="round" paint-order="stroke">Spintellect</text>
+    <text x="380" y="145" fill="#FFFFFF" stroke="#7045E8" stroke-width="9" stroke-linejoin="round" paint-order="stroke">Spintellect</text>
+    <text x="380" y="145" fill="#FFFFFF">Spintellect</text>
+  </g>
+</svg>
