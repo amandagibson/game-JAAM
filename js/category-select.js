@@ -1,6 +1,3 @@
-import { gameState } from "./state.js";
-import { questionBanks } from "./question-banks.js";
-
 // DOM setup
 const canvas = document.getElementById("wheel-canvas");
 const ctx = canvas ? canvas.getContext("2d") : null;
@@ -18,7 +15,7 @@ let spinVelocity = 0;
 let friction = 0.985; // This will slow the wheel down in a natural, smooth way
 
 // Time to render the wheel using HTML5 WOOHOO! (I hope this works...)
-export function drawWheel() {
+function drawWheel() {
   if (!ctx) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -50,7 +47,7 @@ export function drawWheel() {
 }
 
 // Calculating which category is at the top of the wheen (and therefore gets selected!)
-export function getCategoryAtPointer() {
+function getCategoryAtPointer() {
   // Setting the pointer to be at top (12 o'clock)
   const pointerAngle = (3 * Math.PI) / 2;
 
@@ -67,7 +64,7 @@ export function getCategoryAtPointer() {
 }
 
 // Spin animation loop
-export function spinWheel(onComplete) {
+function spinWheel(onComplete) {
   if (gameState.isSpinning) return;
 
   gameState.isSpinning = true;
