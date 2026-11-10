@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="styles/layout.css" />
     <link rel="stylesheet" href="styles/titlepage.css" />
     <link rel="stylesheet" href="styles/game.css" />
-
+    <!-- keep state.js at the top of the scripts so it loads first -->
+    <script defer src="js/state.js"></script>
+    <!-- question banks -->
     <script defer src="questions/art-literature.js"></script>
     <script defer src="questions/film-tv.js"></script>
     <script defer src="questions/music.js"></script>
@@ -27,6 +29,7 @@
     <script defer src="js/titlepage.js"></script>
     <script defer src="js/quiz-render.js"></script>
     <script defer src="js/game.js"></script>
+    <script defer src="js/category-select.js"></script>
     <!-- keep main.js at the end of the scripts so it loads last -->
     <script defer src="js/main.js"></script>
   </head>
