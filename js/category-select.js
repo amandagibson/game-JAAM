@@ -21,8 +21,8 @@ function drawWheel() {
 
   categories.forEach(function (name, index) {
     const categoryData = questionBanks[name];
-    const startAngle = gameState.wheelRotation + index * sliceAngles;
-    const endAngle = startAngle + sliceAngles;
+    const startAngle = gameState.wheelRotation + index * sliceAngle;
+    const endAngle = startAngle + sliceAngle;
 
     // Drawing a slice
     ctx.beginPath();
