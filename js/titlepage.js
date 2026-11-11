@@ -59,21 +59,23 @@ playerForm.addEventListener("submit", (event) => {
 
 // Background music
 const backgroundMusic = document.querySelector("#background-music");
+const musicToggle = document.querySelector("#music-toggle");
 
 backgroundMusic.volume = 0.3;
 
-// Try to start music automatically
-backgroundMusic.play().catch(() => {
-  console.log("Autoplay blocked. Waiting for user interaction.");
-});
-
-// Start music after the first user interaction if autoplay was blocked
-document.addEventListener(
-  "click",
-  () => {
-    if (backgroundMusic.paused) {
-      backgroundMusic.play();
+// Toggle music on and off
+musicToggle.addEventListener("click", async () => {
+  if (backgroundMusic.paused) {
+    try {
+      await backgroundMusic.play();
+      musicToggle.setAttribute("aria-label", "Turn music off");
+      musicToggle.setAttribute("aria-pressed", "true");
+    } catch (error) {
+      console.log("Could not play music:", error);
     }
-  },
-  { once: true },
-);
+  } else {
+    backgroundMusic.pause();
+    musicToggle.setAttribute("aria-label", "Turn music on");
+    musicToggle.setAttribute("aria-pressed", "false");
+  }
+});
