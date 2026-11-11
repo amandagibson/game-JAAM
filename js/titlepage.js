@@ -58,24 +58,61 @@ playerForm.addEventListener("submit", (event) => {
 });
 
 // Background music
+// Background music
 const backgroundMusic = document.querySelector("#background-music");
 const musicToggle = document.querySelector("#music-toggle");
 
 backgroundMusic.volume = 0.3;
 
-// Toggle music on and off
+// Track if the user manually turned the music off
+let musicDisabledByUser = false;
+
+// Update the music button
+function updateMusicButton() {
+  const isPlaying = !backgroundMusic.paused;
+
+  musicToggle.setAttribute(
+    "aria-label",
+    isPlaying ? "Turn music off" : "Turn music on",
+  );
+
+  musicToggle.setAttribute("aria-pressed", String(isPlaying));
+}
+
+// Update button when music starts or stops
+backgroundMusic.addEventListener("play", updateMusicButton);
+backgroundMusic.addEventListener("pause", updateMusicButton);
+
+// Try autoplay when the title page loads
+backgroundMusic.play().catch(() => {
+  console.log("Autoplay blocked. Waiting for user interaction.");
+});
+
+// Start music after the first click anywhere on the page
+document.addEventListener(
+  "click",
+  () => {
+    if (backgroundMusic.paused && !musicDisabledByUser) {
+      backgroundMusic.play().catch((error) => {
+        console.log("Could not play music:", error);
+      });
+    }
+  },
+  { once: true },
+);
+
+// Music toggle button
 musicToggle.addEventListener("click", async () => {
   if (backgroundMusic.paused) {
+    musicDisabledByUser = false;
+
     try {
       await backgroundMusic.play();
-      musicToggle.setAttribute("aria-label", "Turn music off");
-      musicToggle.setAttribute("aria-pressed", "true");
     } catch (error) {
       console.log("Could not play music:", error);
     }
   } else {
+    musicDisabledByUser = true;
     backgroundMusic.pause();
-    musicToggle.setAttribute("aria-label", "Turn music on");
-    musicToggle.setAttribute("aria-pressed", "false");
   }
 });
