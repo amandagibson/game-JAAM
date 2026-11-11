@@ -12,20 +12,20 @@ let currentQuestionIndex = 0;
 
 //map the category to the corresponding question bank
 const questionBank = {
-  artLiterature: artLiterature,
-  filmTv: filmTv,
-  music: music,
-  technology: technology,
-  cultureTradition: cultureTradition,
-  foodDrink: foodDrink,
-  generalKnowledge: generalKnowledge,
-  geography: geography,
-  history: history,
-  maths: maths,
-  nature: nature,
-  science: science,
-  sports: sports,
-  videoGames: videoGames,
+  artLiterature: { questions: artLiterature, color: "#e74c3c" },
+  filmTv: { questions: filmTv, color: "#3498db" },
+  music: { questions: music, color: "#c0392b" },
+  technology: { questions: technology, color: "#f39c12" },
+  cultureTradition: { questions: cultureTradition, color: "#8e44ad" },
+  foodDrink: { questions: foodDrink, color: "#16a085" },
+  generalKnowledge: { questions: generalKnowledge, color: "#2ecc71" },
+  geography: { questions: geography, color: "#f1c40f" },
+  history: { questions: history, color: "#e67e22" },
+  maths: { questions: maths, color: "#d35400" },
+  nature: { questions: nature, color: "#9b59b6" },
+  science: { questions: science, color: "#2980b9" },
+  sports: { questions: sports, color: "#27ae60" },
+  videoGames: { questions: videoGames, color: "#e84393" },
 };
 
 //calculate how many questions based on the level when the number of questions starts at 5 and then increases by 1 every three levels
