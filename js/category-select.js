@@ -3,7 +3,7 @@ const canvas = document.getElementById("wheel-canvas");
 const ctx = canvas ? canvas.getContext("2d") : null;
 
 // Wheel properties
-const categories = Object.keys(questionBanks);
+const categories = Object.keys(questionBank);
 const numSlices = categories.length;
 const sliceAngle = (2 * Math.PI) / numSlices;
 // Wheel size assumes a 400px canvas, we can change this later if needed!
@@ -20,7 +20,7 @@ function drawWheel() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   categories.forEach(function (name, index) {
-    const categoryData = questionBanks[name];
+    const categoryData = questionBank[name];
     const startAngle = gameState.wheelRotation + index * sliceAngle;
     const endAngle = startAngle + sliceAngle;
 
@@ -41,7 +41,8 @@ function drawWheel() {
     ctx.textAlign = "right";
     ctx.fillStyle = "#ffffff";
     ctx.font = "bold 11px sans-serif";
-    ctx.fillText(name, radius - 12, 4);
+    const label = categoryLabels[name] || name;
+    ctx.fillText(label, radius - 12, 4);
     ctx.restore();
   });
 }
