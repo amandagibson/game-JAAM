@@ -92,3 +92,5 @@ function spinWheel(onComplete) {
   }
   requestAnimationFrame(animate);
 }
+
+drawWheel();
