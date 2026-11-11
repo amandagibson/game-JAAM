@@ -68,7 +68,32 @@
     <!-- END TITLE SCREEN ELEMENTS-->
 
     <!-- START WHEEL SCREEN ELEMENTS -->
+    <div id="wheel-screen">
+      <div
+        class="wheel-container"
+        style="position: relative; display: inline-block"
+      >
+        <!-- Top pointer indicating the selected category -->
+        <div
+          class="pointer"
+          style="
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 25px solid #ffffff;
+            z-index: 10;
+          "
+        ></div>
 
+        <canvas id="wheel-canvas" width="400" height="400"></canvas>
+      </div>
+      <button id="spin-button" onclick="spinWheel()">Spin Wheel</button>
+    </div>
     <!-- END WHEEL SCREEN ELEMENTS -->
 
     <!-- START QUIZ SCREEN ELEMENTS -->
