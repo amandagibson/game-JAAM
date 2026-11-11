@@ -56,3 +56,24 @@ playerForm.addEventListener("submit", (event) => {
   savePlayers(players);
   localStorage.setItem("currentPlayer", playerKey);
 });
+
+// Background music
+const backgroundMusic = document.querySelector("#background-music");
+
+backgroundMusic.volume = 0.3;
+
+// Try to start music automatically
+backgroundMusic.play().catch(() => {
+  console.log("Autoplay blocked. Waiting for user interaction.");
+});
+
+// Start music after the first user interaction if autoplay was blocked
+document.addEventListener(
+  "click",
+  () => {
+    if (backgroundMusic.paused) {
+      backgroundMusic.play();
+    }
+  },
+  { once: true },
+);
