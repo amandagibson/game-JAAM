@@ -23,13 +23,13 @@ const gameState = {
 /*
 //LocalStorage High Score Functions
 // Loads the saved high score when the page initializes
-export function loadHighScore() {
+function loadHighScore() {
   const savedScore = localStorage.getItem("quizHighScore");
   gameState.highestScore = savedScore ? parseInt(savedScore, 10) : 0;
 }
 
 // Checks if current money beats highestScore and updates localStorage
-export function checkAndUpdateHighScore() {
+function checkAndUpdateHighScore() {
   if (gameState.playerMoney > gameState.highestScore) {
     gameState.highestScore = gameState.playerMoney;
     localStorage.setItem("quizHighScore", gameState.highestScore);
@@ -41,7 +41,7 @@ export function checkAndUpdateHighScore() {
 // Utilities
 
 // Fisher-Yates Shuffle Function to randomize array order without changing original arrays
-export function shuffleArray(array) {
+function shuffleArray(array) {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
