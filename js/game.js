@@ -196,14 +196,17 @@ function handlePlayAgain() {
 function handleBackToTitle() {
   resetGameState();
   resetRoundState();
+  displayHighestScore();
   showScreen("title-screen");
 }
 
 function handleGameOver() {
   console.log("Game over.");
+  const isNewHighScore = checkAndUpdateHighScore();
 
   renderGameOver({
     level: gameState.currentLevel,
+    isNewHighScore,
     onPlayAgain: handlePlayAgain,
     onBackToTitle: handleBackToTitle,
   });

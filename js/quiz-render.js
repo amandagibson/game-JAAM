@@ -108,10 +108,13 @@ function renderRoundComplete({ category, newLevel, onSpinAgain }) {
   });
 }
 
-function renderGameOver({ level, onPlayAgain, onBackToTitle }) {
+function renderGameOver({ level, isNewHighScore, onPlayAgain, onBackToTitle }) {
+  const highScoreMessage = isNewHighScore
+    ? ` New high score: $${gameState.highScore}!`
+    : "";
   renderResult({
     title: "Game over",
-    message: `You ran out of lives on level ${level}.`,
+    message: `You ran out of lives on level ${level}. ${highScoreMessage}`,
     actions: [
       { label: "Play again", onClick: onPlayAgain },
       { label: "Back to title", onClick: onBackToTitle },

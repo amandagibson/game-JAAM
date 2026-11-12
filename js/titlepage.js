@@ -14,14 +14,7 @@ function savePlayers(players) {
 
 // Display the player's highest score
 function displayHighestScore() {
-  const playerName = nameInput.value.trim().toLowerCase();
-  const players = getPlayers();
-
-  if (players[playerName]) {
-    highestScoreDisplay.textContent = players[playerName].highestScore;
-  } else {
-    highestScoreDisplay.textContent = 0;
-  }
+  highestScoreDisplay.textContent = loadHighScore();
 }
 
 // Set the browser's built-in validation message
@@ -32,8 +25,6 @@ nameInput.addEventListener("input", () => {
   nameInput.setCustomValidity(
     nameInput.value.trim() ? "" : "What should we call you?",
   );
-
-  displayHighestScore();
 });
 
 // Background music
@@ -100,6 +91,7 @@ playerForm.addEventListener("submit", (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  displayHighestScore();
   showScreen("title-screen");
 });
 

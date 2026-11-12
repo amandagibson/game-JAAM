@@ -10,7 +10,7 @@ const gameState = {
   playerMoney: 0,
   playerLives: STARTING_LIVES,
   currentScore: 0,
-  highScore: null,
+  highScore: 0,
   wheelRotation: 0,
   isSpinning: false,
   currentCategory: "",
@@ -22,7 +22,7 @@ function resetGameState() {
   gameState.playerMoney = 0;
   gameState.playerLives = STARTING_LIVES;
   gameState.currentScore = 0;
-  gameState.highScore = null;
+  gameState.highScore = 0;
   gameState.wheelRotation = 0;
   gameState.isSpinning = false;
   gameState.currentCategory = "";
@@ -44,19 +44,22 @@ function resetRoundState() {
   roundState.timeRemaining = QUESTION_TIME_LIMIT_SECONDS;
 }
 
-// //LocalStorage High Score Functions
-// // Loads the saved high score when the page initializes
-// export function loadHighScore() {
-//   const savedScore = localStorage.getItem("quizHighScore");
-//   gameState.highestScore = savedScore ? parseInt(savedScore, 10) : 0;
-// }
+// LocalStorage High Score Functions
+function loadHighScore() {
+  const savedScore = localStorage.getItem("quizHighScore");
+  const parsed = parseInt(savedScore, 10);
+  gameState.highScore = Number.isNaN(parsed) ? 0 : parsed;
+  return gameState.highScore;
+}
 
-// // Checks if current money beats highestScore and updates localStorage
-// export function checkAndUpdateHighScore() {
-//   if (gameState.playerMoney > gameState.highestScore) {
-//     gameState.highestScore = gameState.playerMoney;
-//     localStorage.setItem("quizHighScore", gameState.highestScore);
-//     return true; // a new high score was set
-//   }
-//   return false;
-// }
+function checkAndUpdateHighScore() {
+  const currentHigh = loadHighScore();
+
+  if (gameState.playerMoney > currentHigh) {
+    gameState.highScore = gameState.playerMoney;
+    localStorage.setItem("quizHighScore", gameState.highScore);
+    return true; // a new high score was set
+  }
+
+  return false;
+}
