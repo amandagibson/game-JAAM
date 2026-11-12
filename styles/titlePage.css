@@ -44,11 +44,10 @@ body {
   background-color: white;
 }
 
-button {
+#startGame {
   display: block;
   width: min(80%, 400px);
-  margin: 24px auto 0;
-  margin-top: 70px;
+  margin: 70px auto 0;
   padding: clamp(18px, 1.8vw, 26px);
   font-size: clamp(16px, 2.4vw, 24px);
   font-weight: bold;
@@ -61,7 +60,7 @@ button {
     0 5px 10px rgba(0, 0, 0, 0.4);
 }
 
-button:hover {
+#startGame:hover {
   background-color: #392279;
 }
 
