@@ -39,35 +39,25 @@ function shuffleArray(array) {
 
 function generateQuestions(categoryQuestionBank) {
   if (categoryQuestionBank.length > 0 && roundState.questionsPerRound > 0) {
-    console.log(
-      `Found ${categoryQuestionBank.length} available questions for category: ${roundState.currentCategory}`,
-    );
-    //build a randomized list of questions for the round using the Fisher-Yates shuffle algo
     roundState.currentCategoryQuestions = shuffleArray(
       categoryQuestionBank,
     ).slice(0, roundState.questionsPerRound);
-    console.log(
-      `Selected the following ${roundState.questionsPerRound} questions for level ${gameState.currentLevel}:`,
-      roundState.currentCategoryQuestions,
-    );
+
+    if (
+      roundState.currentCategoryQuestions.length < roundState.questionsPerRound
+    ) {
+      console.warn(
+        `Not enough questions in category "${roundState.currentCategory}". Requested: ${roundState.questionsPerRound}, Available: ${roundState.currentCategoryQuestions.length}`,
+      );
+    }
   } else {
     roundState.currentCategoryQuestions = [];
     console.error(
-      "Current category or number of questions is not set. Cannot generate questions.",
-      { currentCategory: roundState.currentCategory },
+      `No questions available for category "${roundState.currentCategory}".`,
       { questionsPerRound: roundState.questionsPerRound },
     );
-    //TODO: present the wheel spin again to select a new category
-    // spinWheel();
   }
 
-  if (
-    roundState.currentCategoryQuestions.length < roundState.questionsPerRound
-  ) {
-    console.warn(
-      `Not enough questions in category "${roundState.currentCategory}". Requested: ${roundState.questionsPerRound}, Available: ${roundState.currentCategoryQuestions.length}`,
-    );
-  }
   return roundState.currentCategoryQuestions;
 }
 
@@ -163,6 +153,10 @@ function startRound(category) {
   //generate the questions for the round here so they are fresh
   const categoryQuestionBank = questionBank[roundState.currentCategory] || [];
   generateQuestions(categoryQuestionBank);
-  if (roundState.currentCategoryQuestions.length === 0) return; // nothing to play, the wheel should pick again here
+  if (roundState.currentCategoryQuestions.length === 0) {
+    // nothing to play, so send the player back to the wheel to pick again
+    showScreen("wheel-screen"); //TODO: same placeholder id as handleSpinAgain
+    return;
+  }
   renderCurrentQuestion();
 }
