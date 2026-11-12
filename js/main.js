@@ -20,5 +20,6 @@ function handleGamePlay(event) {
   event.preventDefault();
 
   startGame();
-  startRound("history");
+  startWheel();
+  //  startRound("history");
 }

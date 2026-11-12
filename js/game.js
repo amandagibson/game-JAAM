@@ -133,6 +133,7 @@ function handleRoundComplete() {
   console.log(
     `Level up! Now at level ${gameState.currentLevel}. Returning to wheel spin for next category selection.`,
   );
+  startWheel();
 }
 
 //this is the conneting point from the wheel spin to the start of a new round
@@ -145,7 +146,8 @@ function startRound(category) {
     `Starting round ${gameState.currentLevel} with ${gameState.playerLives} lives and ${roundState.questionsPerRound} questions from the category: ${roundState.currentCategory}`,
   );
   //generate the questions for the round here so they are fresh
-  const categoryQuestionBank = questionBank[currentCategory].questions || [];
+  const categoryQuestionBank =
+    questionBank[roundState.currentCategory]?.questions || [];
   generateQuestions(categoryQuestionBank);
   if (roundState.currentCategoryQuestions.length === 0) return; // nothing to play, the wheel should pick again here
   renderCurrentQuestion();

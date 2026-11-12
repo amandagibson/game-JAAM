@@ -11,6 +11,7 @@ const gameState = {
   highScore: null,
   wheelRotation: 0,
   isSpinning: false,
+  currentCategory: "",
 };
 
 function resetGameState() {
@@ -22,6 +23,7 @@ function resetGameState() {
   gameState.highScore = null;
   gameState.wheelRotation = 0;
   gameState.isSpinning = false;
+  gameState.currentCategory = "";
 }
 
 const roundState = {

@@ -110,6 +110,7 @@ function handleSpinComplete(selectedCategory) {
   wheelActions.classList.remove("visually-hidden");
 
   // Disable respin button if the player has less than $200
+  confirmBtn.disabled = false;
   respinBtn.disabled = gameState.playerMoney < respinCost;
 }
 
@@ -124,6 +125,8 @@ spinButton.addEventListener("click", () => {
 respinBtn.addEventListener("click", () => {
   if (gameState.playerMoney >= respinCost && !gameState.isSpinning) {
     gameState.playerMoney -= respinCost;
+    confirmBtn.disabled = true;
+    respinBtn.disabled = true;
     wheelActions.classList.add("visually-hidden");
     categoryDisplay.textContent = "Spinning again...";
     spinWheel(handleSpinComplete);
@@ -132,15 +135,17 @@ respinBtn.addEventListener("click", () => {
 
 // Confirm Category & Start Round
 confirmBtn.addEventListener("click", () => {
-  // Sync selected category with game.js
-  currentCategory = gameState.currentCategory;
-
-  // Hide wheel screen and show quiz screen
-  document.getElementById("wheel-screen").classList.add("visually-hidden");
-  document.getElementById("game-container").classList.remove("visually-hidden");
-
-  // Start the round
-  startRound();
+  startRound(gameState.currentCategory);
 });
 
-drawWheel();
+function startWheel() {
+  // Reset UI state for a fresh spin
+  spinButton.disabled = false;
+  spinButton.classList.remove("visually-hidden");
+  wheelActions.classList.add("visually-hidden");
+  categoryDisplay.textContent = "Spin the wheel to choose a category!";
+
+  // Render the wheel on screen
+  showScreen("wheel-screen");
+  drawWheel();
+}
