@@ -75,3 +75,7 @@ function renderRoundComplete({ category, newLevel }) {
     categoryLabels[category] ?? category;
   document.getElementById("new-level").textContent = newLevel;
 }
+
+function renderGameOver({ level }) {
+  document.getElementById("final-level").textContent = level;
+}

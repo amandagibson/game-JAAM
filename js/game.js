@@ -97,7 +97,7 @@ function handleAnswer(currentQuestion, selectedOptionIndex, optionButton) {
 
   setTimeout(() => {
     if (isGameOver()) {
-      console.log("Game over.");
+      handleGameOver();
       return;
     }
     roundState.currentQuestionIndex += 1;
@@ -131,6 +131,25 @@ function handleRoundComplete() {
   showScreen("round-complete-screen");
 }
 
+function handleGameOver() {
+  console.log("Game over.");
+
+  renderGameOver({ level: gameState.currentLevel });
+  showScreen("game-over-screen");
+}
+
+function handlePlayAgain() {
+  resetGameState();
+  resetRoundState();
+  showScreen("wheel-screen"); // TODO: same placeholder id as handleSpinAgain
+}
+
+function handleBackToTitle() {
+  resetGameState();
+  resetRoundState();
+  showScreen("title-screen");
+}
+
 // the connecting point from the round-complete screen back to the wheel
 function handleSpinAgain() {
   // TODO: swap in the real wheel screen id once the wheel PR is merged
@@ -141,6 +160,14 @@ document
   .getElementById("spin-again-btn")
   .addEventListener("click", handleSpinAgain);
 
+document
+  .getElementById("play-again-btn")
+  .addEventListener("click", handlePlayAgain);
+document
+  .getElementById("back-to-title-btn")
+  .addEventListener("click", handleBackToTitle);
+
+  
 //this is the conneting point from the wheel spin to the start of a new round
 function startRound(category) {
   showScreen("game-container");
