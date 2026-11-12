@@ -29,6 +29,7 @@
     <!-- add new files here -->
     <script defer src="js/titlepage.js"></script>
     <script defer src="js/quiz-render.js"></script>
+    <script defer src="js/lifelines.js"></script>
     <script defer src="js/game.js"></script>
     <script defer src="js/category-select.js"></script>
 
@@ -142,6 +143,13 @@
               <span id="question-text"></span>
             </p>
             <div id="options-container"></div>
+
+            <!-- Lifeline Buttons -->
+            <div id="lifelines-container" class="lifelines">
+              <button type="button" id="lifeline-extra-time">+10s Time</button>
+              <button type="button" id="lifeline-fifty-fifty">50 / 50</button>
+              <button type="button" id="lifeline-skip">Switch Question</button>
+            </div>
           </div>
 
           <div id="result-view" hidden>
