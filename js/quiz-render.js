@@ -80,12 +80,28 @@ function showQuestionView() {
 }
 
 // shared by round complete and game over
-function renderResult({ title, message, actions }) {
+function renderResult({ title, message, highlight, actions }) {
   document.getElementById("question-view").hidden = true;
   document.getElementById("round-info").hidden = true;
   document.getElementById("result-view").hidden = false;
   document.getElementById("result-title").textContent = title;
-  document.getElementById("result-message").textContent = message;
+
+  const messageEl = document.getElementById("result-message");
+  messageEl.innerHTML = "";
+
+  const lines = Array.isArray(message) ? message : [message];
+  lines.forEach((line) => {
+    const lineEl = document.createElement("span");
+    lineEl.textContent = line;
+    messageEl.appendChild(lineEl);
+  });
+
+  if (highlight) {
+    const highlightEl = document.createElement("span");
+    highlightEl.classList.add("result-highlight");
+    highlightEl.textContent = highlight;
+    messageEl.appendChild(highlightEl);
+  }
 
   const actionsContainer = document.getElementById("result-actions");
   actionsContainer.innerHTML = "";
@@ -109,15 +125,21 @@ function renderRoundComplete({ category, newLevel, onSpinAgain }) {
 }
 
 function renderGameOver({ level, isNewHighScore, onPlayAgain, onBackToTitle }) {
-  const highScoreMessage = isNewHighScore
-    ? ` New high score: $${gameState.highScore}!`
-    : ` Final score: $${gameState.currentScore}.`;
+  const player = gameState.playerName || "Player";
+  const scoreText = isNewHighScore
+    ? `New high score: $${gameState.highScore}!`
+    : `Final score: $${gameState.currentScore}`;
+
   renderResult({
     title: "Game over",
-    message: `Well played, ${gameState.playerName || "Player"}! You ran out of lives on level ${level}.${highScoreMessage}`,
+    message: [
+      `Well played, ${player}!`,
+      `You ran out of lives on level ${level}.`,
+    ],
+    highlight: scoreText,
     actions: [
       { label: "Play again", onClick: onPlayAgain },
-      { label: "Back to title", onClick: onBackToTitle },
+      { label: "Back to start", onClick: onBackToTitle },
     ],
   });
 }
