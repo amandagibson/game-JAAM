@@ -125,6 +125,7 @@ function handleRoundComplete() {
   const completedCategory = roundState.currentCategory;
 
   gameState.currentLevel += 1;
+  console.log(`Level up! Now at level ${gameState.currentLevel}.`);
   resetRoundState();
 
   renderRoundComplete({
@@ -136,13 +137,13 @@ function handleRoundComplete() {
 
 // the connecting point from the round-complete screen back to the wheel
 function handleSpinAgain() {
-  showScreen("wheel-screen"); // TODO: placeholder until the wheel PR merges
+  startWheel();
 }
 
 function handlePlayAgain() {
   resetGameState();
   resetRoundState();
-  showScreen("wheel-screen"); // TODO: same placeholder id as handleSpinAgain
+  startWheel();
 }
 
 function handleBackToTitle() {
@@ -159,10 +160,6 @@ function handleGameOver() {
     onPlayAgain: handlePlayAgain,
     onBackToTitle: handleBackToTitle,
   });
-  console.log(
-    `Level up! Now at level ${gameState.currentLevel}. Returning to wheel spin for next category selection.`,
-  );
-  startWheel();
 }
 
 //this is the conneting point from the wheel spin to the start of a new round
@@ -180,7 +177,7 @@ function startRound(category) {
   generateQuestions(categoryQuestionBank);
   if (roundState.currentCategoryQuestions.length === 0) {
     // nothing to play, so send the player back to the wheel to pick again
-    showScreen("wheel-screen"); //TODO: same placeholder id as handleSpinAgain
+    startWheel();
     return;
   }
   renderCurrentQuestion();
