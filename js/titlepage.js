@@ -18,10 +18,12 @@ function displayHighestScore() {
   const players = getPlayers();
 
   if (players[playerName]) {
-    highestScoreDisplay.textContent = players[playerName].highestScore;
+    gameState.highestScore = players[playerName].highestScore;
   } else {
-    highestScoreDisplay.textContent = 0;
+    gameState.highestScore = 0;
   }
+
+  highestScoreDisplay.textContent = gameState.highestScore;
 }
 
 // Set the browser's built-in validation message
