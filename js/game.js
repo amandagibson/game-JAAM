@@ -1,4 +1,3 @@
-// move these constants to a config file or a separate constants file?
 const FEEDBACK_DELAY_MS = 500;
 
 //map the category to the corresponding question bank
@@ -18,6 +17,8 @@ const questionBank = {
   sports: { questions: sports, color: "#27ae60" },
   videoGames: { questions: videoGames, color: "#e84393" },
 };
+
+let questionTimerId = null;
 
 //calculate how many questions based on the level when the number of questions starts at 5 and then increases by 1 every three levels
 function calculateQuestionsPerRound() {
@@ -80,24 +81,43 @@ function renderCurrentQuestion() {
     totalQuestions: roundState.currentCategoryQuestions.length,
     lives: gameState.playerLives,
     maxLives: STARTING_LIVES,
+    money: gameState.playerMoney,
   });
 
   renderQuestion(currentQuestion, (optionIndex, optionButton) =>
     handleAnswer(currentQuestion, optionIndex, optionButton),
   );
+
+  startQuestionTimer(() => handleTimeout(currentQuestion));
 }
 
 function handleAnswer(currentQuestion, selectedOptionIndex, optionButton) {
+  stopQuestionTimer(); // stop first so timeRemaining is frozen
+
   const isCorrect = selectedOptionIndex === currentQuestion.answer;
   console.log(isCorrect ? "Correct answer." : "Incorrect answer.");
 
   lockOptions();
   markAnswer(optionButton, isCorrect);
 
-  if (!isCorrect) {
+  if (isCorrect) {
+    awardMoney(roundState.timeRemaining * MONEY_PER_SECOND);
+  } else {
     loseLife();
   }
 
+  advanceAfterFeedback();
+}
+
+function handleTimeout() {
+  console.log("Time's up.");
+
+  lockOptions();
+  loseLife();
+  advanceAfterFeedback();
+}
+
+function advanceAfterFeedback() {
   setTimeout(() => {
     if (isGameOver()) {
       handleGameOver();
@@ -106,6 +126,39 @@ function handleAnswer(currentQuestion, selectedOptionIndex, optionButton) {
     roundState.currentQuestionIndex += 1;
     renderCurrentQuestion();
   }, FEEDBACK_DELAY_MS);
+}
+
+function startQuestionTimer(onTimeout) {
+  stopQuestionTimer();
+  roundState.timeRemaining = QUESTION_TIME_LIMIT_SECONDS;
+  renderTimer(roundState.timeRemaining);
+
+  questionTimerId = setInterval(() => {
+    roundState.timeRemaining -= 1;
+    renderTimer(roundState.timeRemaining);
+
+    if (roundState.timeRemaining <= 0) {
+      stopQuestionTimer();
+      onTimeout();
+    }
+  }, 1000);
+}
+
+function stopQuestionTimer() {
+  clearInterval(questionTimerId);
+  questionTimerId = null;
+}
+
+function awardMoney(amount) {
+  gameState.playerMoney += amount;
+  gameState.currentScore += amount;
+  console.log(
+    "Money:",
+    gameState.playerMoney,
+    "Score:",
+    gameState.currentScore,
+  );
+  renderMoney(gameState.playerMoney);
 }
 
 function loseLife() {
@@ -141,7 +194,9 @@ function handleSpinAgain() {
 }
 
 function handlePlayAgain() {
+  const currentPlayer = gameState.playerName;
   resetGameState();
+  gameState.playerName = currentPlayer;
   resetRoundState();
   startWheel();
 }
@@ -149,14 +204,17 @@ function handlePlayAgain() {
 function handleBackToTitle() {
   resetGameState();
   resetRoundState();
+  displayHighestScore();
   showScreen("title-screen");
 }
 
 function handleGameOver() {
   console.log("Game over.");
+  const isNewHighScore = checkAndUpdateHighScore();
 
   renderGameOver({
     level: gameState.currentLevel,
+    isNewHighScore,
     onPlayAgain: handlePlayAgain,
     onBackToTitle: handleBackToTitle,
   });

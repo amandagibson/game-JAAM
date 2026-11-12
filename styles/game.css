@@ -73,7 +73,8 @@
 }
 
 .level,
-.lives {
+.lives,
+.money {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text);
@@ -102,4 +103,42 @@
 
 .heart--lost {
   fill: transparent;
+}
+
+.timer {
+  margin: 0 0 1.5rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-2);
+}
+
+.timer--low {
+  color: var(--wrong);
+}
+
+#result-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.result-highlight {
+  margin-top: 0.85rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent-2);
+}
+
+#result-actions .option-btn {
+  width: auto;
+  min-width: 210px;
+  margin: 0;
+  padding: 1.25rem 2rem;
 }
