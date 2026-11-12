@@ -1,6 +1,12 @@
 // DOM setup
 const canvas = document.getElementById("wheel-canvas");
 const ctx = canvas ? canvas.getContext("2d") : null;
+const spinButton = document.getElementById("spin-button");
+const wheelActions = document.getElementById("wheel-actions");
+const confirmBtn = document.getElementById("confirm-category-btn");
+const respinBtn = document.getElementById("respin-btn");
+const categoryDisplay = document.getElementById("selected-category-display");
+const respinCost = 200;
 
 // Wheel properties
 const categories = Object.keys(questionBank);
@@ -93,5 +99,48 @@ function spinWheel(onComplete) {
   }
   requestAnimationFrame(animate);
 }
+
+// Post-spin UI updates
+function handleSpinComplete(selectedCategory) {
+  const friendlyName = categoryLabels[selectedCategory] || selectedCategory;
+  categoryDisplay.textContent = `Category: ${friendlyName}`;
+
+  // Hide initial spin button and show Confirm / Respin buttons
+  spinButton.classList.add("visually-hidden");
+  wheelActions.classList.remove("visually-hidden");
+
+  // Disable respin button if the player has less than $200
+  respinBtn.disabled = gameState.playerMoney < respinCost;
+}
+
+// Initial Spin
+spinButton.addEventListener("click", () => {
+  spinButton.disabled = true;
+  categoryDisplay.textContent = "Spinning...";
+  spinWheel(handleSpinComplete);
+});
+
+// Spend respinCost to Spin Again
+respinBtn.addEventListener("click", () => {
+  if (gameState.playerMoney >= respinCost && !gameState.isSpinning) {
+    gameState.playerMoney -= respinCost;
+    wheelActions.classList.add("visually-hidden");
+    categoryDisplay.textContent = "Spinning again...";
+    spinWheel(handleSpinComplete);
+  }
+});
+
+// Confirm Category & Start Round
+confirmBtn.addEventListener("click", () => {
+  // Sync selected category with game.js
+  currentCategory = gameState.currentCategory;
+
+  // Hide wheel screen and show quiz screen
+  document.getElementById("wheel-screen").classList.add("visually-hidden");
+  document.getElementById("game-container").classList.remove("visually-hidden");
+
+  // Start the round
+  startRound();
+});
 
 drawWheel();
