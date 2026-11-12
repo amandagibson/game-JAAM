@@ -84,24 +84,22 @@
 
     <!-- START WHEEL SCREEN ELEMENTS -->
     <div id="wheel-screen" data-screen hidden>
-      <div class="wheel-container">
-        <!-- Top pointer indicating the selected category -->
-        <div class="pointer"></div>
-        <canvas id="wheel-canvas" width="400" height="400"></canvas>
-      </div>
+      <div class="wheel-card">
+        <div class="wheel-container">
+          <div class="pointer"></div>
+          <canvas id="wheel-canvas" width="400" height="400"></canvas>
+        </div>
 
-      <!-- Displays which category was landed on -->
-      <h2 id="selected-category-display">
-        Spin the wheel to choose a category!
-      </h2>
+        <h2 id="selected-category-display">
+          Spin the wheel to choose a category!
+        </h2>
 
-      <!-- Spin Button -->
-      <button type="button" id="spin-button">Spin Wheel</button>
+        <button type="button" id="spin-button">Spin Wheel</button>
 
-      <!-- Post-Spin Action Buttons (hidden until wheel stops) -->
-      <div id="wheel-actions" class="visually-hidden">
-        <button type="button" id="confirm-category-btn">Start Round</button>
-        <button type="button" id="respin-btn">Spin Again ($200)</button>
+        <div id="wheel-actions" class="visually-hidden">
+          <button type="button" id="confirm-category-btn">Start Round</button>
+          <button type="button" id="respin-btn">Spin Again ($200)</button>
+        </div>
       </div>
     </div>
     <!-- END WHEEL SCREEN ELEMENTS -->
