@@ -8,13 +8,13 @@ function getPlayers() {
     const players = JSON.parse(localStorage.getItem("players"));
 
     if (players && typeof players === "object" && !Array.isArray(players)) {
-      return players;
+      return Object.assign(Object.create(null), players);
     }
 
-    return {};
+    return Object.create(null);
   } catch (error) {
     console.error("Could not load saved players:", error);
-    return {};
+    return Object.create(null);
   }
 }
 // Save players
