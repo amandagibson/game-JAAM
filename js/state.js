@@ -1,6 +1,8 @@
 const STARTING_LIVES = 3;
 const BASE_QUESTIONS_PER_ROUND = 5;
 const LEVELS_PER_EXTRA_QUESTION = 3; // +1 question every 3 levels
+const QUESTION_TIME_LIMIT_SECONDS = 15; // adjust to taste
+const MONEY_PER_SECOND = 1;
 
 const gameState = {
   playerName: "",
@@ -31,6 +33,7 @@ const roundState = {
   questionsPerRound: BASE_QUESTIONS_PER_ROUND,
   currentCategoryQuestions: [],
   currentQuestionIndex: 0,
+  timeRemaining: QUESTION_TIME_LIMIT_SECONDS,
 };
 
 function resetRoundState() {
@@ -38,6 +41,7 @@ function resetRoundState() {
   roundState.questionsPerRound = BASE_QUESTIONS_PER_ROUND;
   roundState.currentCategoryQuestions = [];
   roundState.currentQuestionIndex = 0;
+  roundState.timeRemaining = QUESTION_TIME_LIMIT_SECONDS;
 }
 
 // //LocalStorage High Score Functions

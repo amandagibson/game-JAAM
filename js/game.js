@@ -19,6 +19,8 @@ const questionBank = {
   videoGames: { questions: videoGames, color: "#e84393" },
 };
 
+let questionTimerId = null;
+
 //calculate how many questions based on the level when the number of questions starts at 5 and then increases by 1 every three levels
 function calculateQuestionsPerRound() {
   const baseQuestions = BASE_QUESTIONS_PER_ROUND;
@@ -80,24 +82,43 @@ function renderCurrentQuestion() {
     totalQuestions: roundState.currentCategoryQuestions.length,
     lives: gameState.playerLives,
     maxLives: STARTING_LIVES,
+    money: gameState.playerMoney,
   });
 
   renderQuestion(currentQuestion, (optionIndex, optionButton) =>
     handleAnswer(currentQuestion, optionIndex, optionButton),
   );
+
+  startQuestionTimer(() => handleTimeout(currentQuestion));
 }
 
 function handleAnswer(currentQuestion, selectedOptionIndex, optionButton) {
+  stopQuestionTimer(); // stop first so timeRemaining is frozen
+
   const isCorrect = selectedOptionIndex === currentQuestion.answer;
   console.log(isCorrect ? "Correct answer." : "Incorrect answer.");
 
   lockOptions();
   markAnswer(optionButton, isCorrect);
 
-  if (!isCorrect) {
+  if (isCorrect) {
+    awardMoney(roundState.timeRemaining * MONEY_PER_SECOND);
+  } else {
     loseLife();
   }
 
+  advanceAfterFeedback();
+}
+
+function handleTimeout() {
+  console.log("Time's up.");
+
+  lockOptions();
+  loseLife();
+  advanceAfterFeedback();
+}
+
+function advanceAfterFeedback() {
   setTimeout(() => {
     if (isGameOver()) {
       handleGameOver();
@@ -106,6 +127,32 @@ function handleAnswer(currentQuestion, selectedOptionIndex, optionButton) {
     roundState.currentQuestionIndex += 1;
     renderCurrentQuestion();
   }, FEEDBACK_DELAY_MS);
+}
+
+function startQuestionTimer(onTimeout) {
+  stopQuestionTimer();
+  roundState.timeRemaining = QUESTION_TIME_LIMIT_SECONDS;
+  renderTimer(roundState.timeRemaining);
+
+  questionTimerId = setInterval(() => {
+    roundState.timeRemaining -= 1;
+    renderTimer(roundState.timeRemaining);
+
+    if (roundState.timeRemaining <= 0) {
+      stopQuestionTimer();
+      onTimeout();
+    }
+  }, 1000);
+}
+
+function stopQuestionTimer() {
+  clearInterval(questionTimerId);
+  questionTimerId = null;
+}
+
+function awardMoney(amount) {
+  gameState.playerMoney += amount;
+  renderMoney(gameState.playerMoney);
 }
 
 function loseLife() {

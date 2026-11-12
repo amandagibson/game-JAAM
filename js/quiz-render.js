@@ -25,6 +25,7 @@ function renderHud({
   totalQuestions,
   lives,
   maxLives,
+  money,
 }) {
   const label = categoryLabels[category] ?? category;
   document.getElementById("category-label").textContent = label;
@@ -32,6 +33,7 @@ function renderHud({
   document.getElementById("question-counter").textContent =
     `Question ${questionNumber}/${totalQuestions}`;
   renderLives(lives, maxLives);
+  renderMoney(money);
 }
 
 function renderQuestion(question, onAnswer) {
@@ -115,4 +117,13 @@ function renderGameOver({ level, onPlayAgain, onBackToTitle }) {
       { label: "Back to title", onClick: onBackToTitle },
     ],
   });
+}
+
+function renderTimer(seconds) {
+  document.getElementById("timer-display").textContent = seconds;
+  document.getElementById("timer").classList.toggle("timer--low", seconds <= 5);
+}
+
+function renderMoney(amount) {
+  document.getElementById("money-display").textContent = amount;
 }

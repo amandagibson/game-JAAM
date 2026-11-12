@@ -73,7 +73,8 @@
 }
 
 .level,
-.lives {
+.lives,
+.money {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text);
@@ -102,4 +103,15 @@
 
 .heart--lost {
   fill: transparent;
+}
+
+.timer {
+  margin: 0 0 1.5rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-2);
+}
+
+.timer--low {
+  color: var(--wrong);
 }
