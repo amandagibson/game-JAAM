@@ -55,8 +55,8 @@ function loadHighScore() {
 function checkAndUpdateHighScore() {
   const currentHigh = loadHighScore();
 
-  if (gameState.playerMoney > currentHigh) {
-    gameState.highScore = gameState.playerMoney;
+  if (gameState.currentScore > currentHigh) {
+    gameState.highScore = gameState.currentScore;
     localStorage.setItem("quizHighScore", gameState.highScore);
     return true; // a new high score was set
   }

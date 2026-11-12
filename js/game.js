@@ -1,4 +1,3 @@
-// move these constants to a config file or a separate constants file?
 const FEEDBACK_DELAY_MS = 500;
 
 //map the category to the corresponding question bank
@@ -152,6 +151,13 @@ function stopQuestionTimer() {
 
 function awardMoney(amount) {
   gameState.playerMoney += amount;
+  gameState.currentScore += amount;
+  console.log(
+    "Money:",
+    gameState.playerMoney,
+    "Score:",
+    gameState.currentScore,
+  );
   renderMoney(gameState.playerMoney);
 }
 
