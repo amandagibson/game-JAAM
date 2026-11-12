@@ -114,7 +114,7 @@ function renderGameOver({ level, isNewHighScore, onPlayAgain, onBackToTitle }) {
     : ` Final score: $${gameState.currentScore}.`;
   renderResult({
     title: "Game over",
-    message: `You ran out of lives on level ${level}. ${highScoreMessage}`,
+    message: `Well played, ${gameState.playerName || "Player"}! You ran out of lives on level ${level}.${highScoreMessage}`,
     actions: [
       { label: "Play again", onClick: onPlayAgain },
       { label: "Back to title", onClick: onBackToTitle },

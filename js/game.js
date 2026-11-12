@@ -194,7 +194,9 @@ function handleSpinAgain() {
 }
 
 function handlePlayAgain() {
+  const currentPlayer = gameState.playerName;
   resetGameState();
+  gameState.playerName = currentPlayer;
   resetRoundState();
   startWheel();
 }

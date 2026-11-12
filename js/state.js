@@ -11,6 +11,7 @@ const gameState = {
   playerLives: STARTING_LIVES,
   currentScore: 0,
   highScore: 0,
+  highScoreHolder: "",
   wheelRotation: 0,
   isSpinning: false,
   currentCategory: "",
@@ -23,6 +24,7 @@ function resetGameState() {
   gameState.playerLives = STARTING_LIVES;
   gameState.currentScore = 0;
   gameState.highScore = 0;
+  gameState.highScoreHolder = "";
   gameState.wheelRotation = 0;
   gameState.isSpinning = false;
   gameState.currentCategory = "";
@@ -49,6 +51,7 @@ function loadHighScore() {
   const savedScore = localStorage.getItem("quizHighScore");
   const parsed = parseInt(savedScore, 10);
   gameState.highScore = Number.isNaN(parsed) ? 0 : parsed;
+  gameState.highScoreHolder = localStorage.getItem("quizHighScoreHolder") || "";
   return gameState.highScore;
 }
 
@@ -57,7 +60,9 @@ function checkAndUpdateHighScore() {
 
   if (gameState.currentScore > currentHigh) {
     gameState.highScore = gameState.currentScore;
+    gameState.highScoreHolder = gameState.playerName || "Player";
     localStorage.setItem("quizHighScore", gameState.highScore);
+    localStorage.setItem("quizHighScoreHolder", gameState.highScoreHolder);
     return true; // a new high score was set
   }
 
