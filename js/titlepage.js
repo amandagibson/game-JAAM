@@ -41,6 +41,7 @@ playerForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const playerName = nameInput.value.trim();
+  gameState.playerName = playerName;
   const players = getPlayers();
   const playerKey = playerName.toLowerCase();
 
