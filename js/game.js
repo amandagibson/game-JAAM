@@ -21,7 +21,7 @@ const questionBank = {
 
 //calculate how many questions based on the level when the number of questions starts at 5 and then increases by 1 every three levels
 function calculateQuestionsPerRound() {
-  const baseQuestions = 5;
+  const baseQuestions = BASE_QUESTIONS_PER_ROUND;
   const additionalQuestions = Math.floor(
     (gameState.currentLevel - 1) / LEVELS_PER_EXTRA_QUESTION,
   );
@@ -127,13 +127,29 @@ function isGameOver() {
 
 function handleRoundComplete() {
   console.log("The round is complete.");
+
+  // grab the category before resetRoundState() clears it
+  const completedCategory = roundState.currentCategory;
+
   gameState.currentLevel += 1;
-  //return to the wheel spin to select a new category for the next round
   resetRoundState();
-  console.log(
-    `Level up! Now at level ${gameState.currentLevel}. Returning to wheel spin for next category selection.`,
-  );
+
+  renderRoundComplete({
+    category: completedCategory,
+    newLevel: gameState.currentLevel,
+  });
+  showScreen("round-complete-screen");
 }
+
+// the connecting point from the round-complete screen back to the wheel
+function handleSpinAgain() {
+  // TODO: swap in the real wheel screen id once the wheel PR is merged
+  showScreen("wheel-screen");
+}
+
+document
+  .getElementById("spin-again-btn")
+  .addEventListener("click", handleSpinAgain);
 
 //this is the conneting point from the wheel spin to the start of a new round
 function startRound(category) {

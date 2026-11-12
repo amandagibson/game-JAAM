@@ -69,3 +69,9 @@ function renderLives(lives, maxLives) {
     return `<svg class="heart${lostClass}" viewBox="0 0 24 24" aria-hidden="true"><path d="${HEART_PATH}" /></svg>`;
   }).join("");
 }
+
+function renderRoundComplete({ category, newLevel }) {
+  document.getElementById("completed-category").textContent =
+    categoryLabels[category] ?? category;
+  document.getElementById("new-level").textContent = newLevel;
+}

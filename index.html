@@ -51,19 +51,6 @@
         🎵
       </button>
 
-      <audio id="background-music" loop>
-        <source src="assets/sounds/christmas-theme.mp3" type="audio/mpeg" />
-      </audio>
-
-      <button
-        type="button"
-        id="music-toggle"
-        aria-label="Turn music on"
-        aria-pressed="false"
-      >
-        🎵
-      </button>
-
       <img
         src="assets/images/SpintellectLogo.svg"
         alt="Spintellect logo"
@@ -120,5 +107,18 @@
       </div>
       <!-- END QUIZ SCREEN ELEMENTS -->
     </div>
+
+    <!-- START ROUND COMPLETE SCREEN -->
+    <div id="round-complete-screen" data-screen hidden>
+      <section class="round-complete">
+        <h2>Round complete!</h2>
+        <p>You finished the <span id="completed-category"></span> round.</p>
+        <p class="level-up">
+          Level up! You're now on level <span id="new-level"></span>.
+        </p>
+        <button type="button" id="spin-again-btn">Spin the wheel</button>
+      </section>
+    </div>
+    <!-- END ROUND COMPLETE SCREEN -->
   </body>
 </html>
