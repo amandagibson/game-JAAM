@@ -3,20 +3,20 @@ const FEEDBACK_DELAY_MS = 500;
 
 //map the category to the corresponding question bank
 const questionBank = {
-  artLiterature: artLiterature,
-  filmTv: filmTv,
-  music: music,
-  technology: technology,
-  cultureTradition: cultureTradition,
-  foodDrink: foodDrink,
-  generalKnowledge: generalKnowledge,
-  geography: geography,
-  history: history,
-  maths: maths,
-  nature: nature,
-  science: science,
-  sports: sports,
-  videoGames: videoGames,
+  artLiterature: { questions: artLiterature, color: "#e74c3c" },
+  filmTv: { questions: filmTv, color: "#3498db" },
+  music: { questions: music, color: "#c0392b" },
+  technology: { questions: technology, color: "#f39c12" },
+  cultureTradition: { questions: cultureTradition, color: "#8e44ad" },
+  foodDrink: { questions: foodDrink, color: "#16a085" },
+  generalKnowledge: { questions: generalKnowledge, color: "#2ecc71" },
+  geography: { questions: geography, color: "#f1c40f" },
+  history: { questions: history, color: "#e67e22" },
+  maths: { questions: maths, color: "#d35400" },
+  nature: { questions: nature, color: "#9b59b6" },
+  science: { questions: science, color: "#2980b9" },
+  sports: { questions: sports, color: "#27ae60" },
+  videoGames: { questions: videoGames, color: "#e84393" },
 };
 
 //calculate how many questions based on the level when the number of questions starts at 5 and then increases by 1 every three levels
@@ -133,6 +133,7 @@ function handleRoundComplete() {
   console.log(
     `Level up! Now at level ${gameState.currentLevel}. Returning to wheel spin for next category selection.`,
   );
+  startWheel();
 }
 
 //this is the conneting point from the wheel spin to the start of a new round
@@ -145,7 +146,8 @@ function startRound(category) {
     `Starting round ${gameState.currentLevel} with ${gameState.playerLives} lives and ${roundState.questionsPerRound} questions from the category: ${roundState.currentCategory}`,
   );
   //generate the questions for the round here so they are fresh
-  const categoryQuestionBank = questionBank[roundState.currentCategory] || [];
+  const categoryQuestionBank =
+    questionBank[roundState.currentCategory]?.questions || [];
   generateQuestions(categoryQuestionBank);
   if (roundState.currentCategoryQuestions.length === 0) return; // nothing to play, the wheel should pick again here
   renderCurrentQuestion();

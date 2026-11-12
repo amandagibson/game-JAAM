@@ -9,8 +9,9 @@ const gameState = {
   playerLives: STARTING_LIVES,
   currentScore: 0,
   highScore: null,
-  rotation: 0,
+  wheelRotation: 0,
   isSpinning: false,
+  currentCategory: "",
 };
 
 function resetGameState() {
@@ -20,8 +21,9 @@ function resetGameState() {
   gameState.playerLives = STARTING_LIVES;
   gameState.currentScore = 0;
   gameState.highScore = null;
-  gameState.rotation = 0;
+  gameState.wheelRotation = 0;
   gameState.isSpinning = false;
+  gameState.currentCategory = "";
 }
 
 const roundState = {
