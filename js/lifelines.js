@@ -1,24 +1,79 @@
+// Adjust lifeline prices here
+const LIFELINE_COSTS = {
+  extraTime: 30,
+  fiftyFifty: 30,
+  skipQuestion: 30,
+};
+
 const extraTimeBtn = document.getElementById("lifeline-extra-time");
 const fiftyFiftyBtn = document.getElementById("lifeline-fifty-fifty");
 const skipBtn = document.getElementById("lifeline-skip");
 
-// Re-enable all lifeline buttons for the new question
-function resetLifelineButtons() {
-  if (extraTimeBtn) extraTimeBtn.disabled = false;
-  if (fiftyFiftyBtn) fiftyFiftyBtn.disabled = false;
-  if (skipBtn) skipBtn.disabled = false;
+// Track which lifelines have been used on the current question
+let extraTimeUsed = false;
+let fiftyFiftyUsed = false;
+let skipUsed = false;
+
+// Set button labels with their configured costs
+function renderLifelineLabels() {
+  if (extraTimeBtn) {
+    extraTimeBtn.textContent = "+10s Time ($" + LIFELINE_COSTS.extraTime + ")";
+  }
+  if (fiftyFiftyBtn) {
+    fiftyFiftyBtn.textContent = "50 / 50 ($" + LIFELINE_COSTS.fiftyFifty + ")";
+  }
+  if (skipBtn) {
+    skipBtn.textContent =
+      "Switch Question ($" + LIFELINE_COSTS.skipQuestion + ")";
+  }
 }
 
-// Temporarily disable lifeline buttons during the 500ms answer feedback delay
+// Enable/disable buttons based on usage and current playerMoney
+function updateLifelineAvailability() {
+  if (extraTimeBtn) {
+    extraTimeBtn.disabled =
+      extraTimeUsed || gameState.playerMoney < LIFELINE_COSTS.extraTime;
+  }
+  if (fiftyFiftyBtn) {
+    fiftyFiftyBtn.disabled =
+      fiftyFiftyUsed || gameState.playerMoney < LIFELINE_COSTS.fiftyFifty;
+  }
+  if (skipBtn) {
+    skipBtn.disabled =
+      skipUsed || gameState.playerMoney < LIFELINE_COSTS.skipQuestion;
+  }
+}
+
+// Re-enable lifeline buttons for a new question (if the player can afford them)
+function resetLifelineButtons() {
+  extraTimeUsed = false;
+  fiftyFiftyUsed = false;
+  skipUsed = false;
+
+  renderLifelineLabels();
+  updateLifelineAvailability();
+}
+
+// Temporarily disable lifeline buttons during the answer feedback delay
 function lockLifelines() {
   if (extraTimeBtn) extraTimeBtn.disabled = true;
   if (fiftyFiftyBtn) fiftyFiftyBtn.disabled = true;
   if (skipBtn) skipBtn.disabled = true;
 }
 
+// Deduct cost from playerMoney and update the HUD and button availability
+function spendLifelineMoney(cost) {
+  gameState.playerMoney -= cost;
+  renderMoney(gameState.playerMoney);
+  updateLifelineAvailability();
+}
+
 // Adds 10 seconds to the timer for the current question
 function extraTime() {
-  if (extraTimeBtn) extraTimeBtn.disabled = true;
+  if (extraTimeUsed || gameState.playerMoney < LIFELINE_COSTS.extraTime) return;
+
+  extraTimeUsed = true;
+  spendLifelineMoney(LIFELINE_COSTS.extraTime);
 
   roundState.timeRemaining += 10;
   renderTimer(roundState.timeRemaining);
@@ -26,11 +81,16 @@ function extraTime() {
 
 // Removes 2 wrong answers from the 4 available
 function fiftyFifty() {
+  if (fiftyFiftyUsed || gameState.playerMoney < LIFELINE_COSTS.fiftyFifty) {
+    return;
+  }
+
   const currentQuestion =
     roundState.currentCategoryQuestions[roundState.currentQuestionIndex];
   if (!currentQuestion) return;
 
-  if (fiftyFiftyBtn) fiftyFiftyBtn.disabled = true;
+  fiftyFiftyUsed = true;
+  spendLifelineMoney(LIFELINE_COSTS.fiftyFifty);
 
   // Collect indices of the 3 incorrect options
   const wrongIndices = [];
@@ -56,7 +116,7 @@ function fiftyFifty() {
 
 // Replaces the current question with a fresh one from the category bank without losing a life
 function skipQuestion() {
-  if (skipBtn) skipBtn.disabled = true;
+  if (skipUsed || gameState.playerMoney < LIFELINE_COSTS.skipQuestion) return;
 
   const categoryData = questionBank[roundState.currentCategory];
   if (!categoryData || !categoryData.questions) return;
@@ -75,6 +135,9 @@ function skipQuestion() {
     );
     return;
   }
+
+  skipUsed = true;
+  spendLifelineMoney(LIFELINE_COSTS.skipQuestion);
 
   // Pick a random replacement question from the unused pool
   const randomIndex = Math.floor(Math.random() * unusedQuestions.length);
@@ -96,3 +159,5 @@ if (fiftyFiftyBtn) {
 if (skipBtn) {
   skipBtn.addEventListener("click", skipQuestion);
 }
+
+renderLifelineLabels();
