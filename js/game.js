@@ -174,7 +174,7 @@ function isGameOver() {
 
 function handleRoundComplete() {
   console.log("The round is complete.");
-
+  stopQuestionTimer();
   // grab the category before resetRoundState() clears it
   const completedCategory = roundState.currentCategory;
 
@@ -212,7 +212,7 @@ function handleBackToTitle() {
 function handleGameOver() {
   console.log("Game over.");
   const isNewHighScore = checkAndUpdateHighScore();
-
+  stopQuestionTimer();
   renderGameOver({
     level: gameState.currentLevel,
     isNewHighScore,
