@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/layout.css" />
     <link rel="stylesheet" href="styles/titlepage.css" />
     <link rel="stylesheet" href="styles/game.css" />
+    <link rel="stylesheet" href="styles/wheel.css" />
     <!-- keep state.js at the top of the scripts so it loads first -->
     <script defer src="js/state.js"></script>
     <!-- question banks -->
@@ -81,30 +82,25 @@
 
     <!-- START WHEEL SCREEN ELEMENTS -->
     <div id="wheel-screen">
-      <div
-        class="wheel-container"
-        style="position: relative; display: inline-block"
-      >
+      <div class="wheel-container">
         <!-- Top pointer indicating the selected category -->
-        <div
-          class="pointer"
-          style="
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 25px solid #ffffff;
-            z-index: 10;
-          "
-        ></div>
-
+        <div class="pointer"></div>
         <canvas id="wheel-canvas" width="400" height="400"></canvas>
       </div>
-      <button id="spin-button" onclick="spinWheel()">Spin Wheel</button>
+
+      <!-- Displays which category was landed on -->
+      <h2 id="selected-category-display">
+        Spin the wheel to choose a category!
+      </h2>
+
+      <!-- Spin Button -->
+      <button type="button" id="spin-button">Spin Wheel</button>
+
+      <!-- Post-Spin Action Buttons (hidden until wheel stops) -->
+      <div id="wheel-actions" class="visually-hidden">
+        <button type="button" id="confirm-category-btn">Start Round</button>
+        <button type="button" id="respin-btn">Spin Again ($200)</button>
+      </div>
     </div>
     <!-- END WHEEL SCREEN ELEMENTS -->
 
