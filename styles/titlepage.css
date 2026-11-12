@@ -89,6 +89,45 @@ button:hover {
   font-weight: bold;
 }
 
+/* Background Music Toggle */
+#music-toggle {
+  position: absolute;
+  top: 10px;
+  right: 185px;
+  z-index: 10;
+
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid white;
+  border-radius: 50%;
+
+  color: #19191c;
+  font-size: 27px;
+  cursor: pointer;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+#music-toggle:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+#music-toggle:focus-visible {
+  outline: 3px solid #ff8caa;
+  outline-offset: 4px;
+}
+
 /* Background Video-Tablet */
 @media (min-width: 481px) and (max-width: 1024px) {
   #background-video {
