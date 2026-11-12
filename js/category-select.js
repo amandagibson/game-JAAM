@@ -12,7 +12,6 @@ const respinCost = 50;
 const categories = Object.keys(questionBank);
 const numSlices = categories.length;
 const sliceAngle = (2 * Math.PI) / numSlices;
-// Wheel size assumes a 400px canvas, we can change this later if needed!
 const centerX = 200;
 const centerY = 200;
 const radius = 180;
