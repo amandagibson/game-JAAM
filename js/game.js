@@ -151,7 +151,7 @@ function startRound() {
     `Starting round ${currentLevel} with ${playerLives} lives and ${questionsPerRound} questions from the category: ${currentCategory}`,
   );
   //generate the questions for the round here so they are fresh
-  const categoryQuestionBank = questionBank[currentCategory] || [];
+  const categoryQuestionBank = questionBank[currentCategory].questions || [];
   generateQuestions(categoryQuestionBank);
   if (currentCategoryQuestions.length === 0) return; // nothing to play, the wheel should pick again here
   renderCurrentQuestion();
