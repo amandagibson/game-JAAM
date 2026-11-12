@@ -33,38 +33,41 @@
   </head>
   <body>
     <!-- START QUIZ Title Page -->
-    <video autoplay muted loop playsinline id="background-video">
-      <source src="/assets/videos/245751.mp4" type="video/mp4" />
-    </video>
+    <main id="title-screen" data-screen>
+      <video autoplay muted loop playsinline id="background-video">
+        <source src="/assets/videos/245751.mp4" type="video/mp4" />
+      </video>
 
-    <img
-      src="/assets/images/SpintellectLogo.svg"
-      alt="Spintellect logo"
-      class="game-logo"
-    />
-
-    <form id="playerForm">
-      <input
-        type="text"
-        id="playerName"
-        name="playerName"
-        placeholder="Enter your name"
-        required
+      <img
+        src="/assets/images/SpintellectLogo.svg"
+        alt="Spintellect logo"
+        class="game-logo"
       />
 
-      <button type="submit" id="startGame">Start Game</button>
-    </form>
+      <form id="playerForm">
+        <input
+          type="text"
+          id="playerName"
+          name="playerName"
+          placeholder="Enter your name"
+          required
+        />
 
-    <div id="highestScoreDisplay">
-      <h3>
-        Highest Score:
-        <span id="highestScore">0</span>
-      </h3>
-    </div>
+        <button type="submit" id="startGame">Start Game</button>
+      </form>
+
+      <div id="highestScoreDisplay">
+        <h3>
+          Highest Score:
+          <span id="highestScore">0</span>
+        </h3>
+      </div>
+    </main>
+    <!-- END QUIZ Title Page -->
 
     <!-- START QUIZ SCREEN ELEMENTS -->
 
-    <div id="game-container">
+    <div id="game-container" data-screen hidden>
       <h1 class="visually-hidden">Spintellect</h1>
       <div id="quiz-screen">
         <header class="top-bar">

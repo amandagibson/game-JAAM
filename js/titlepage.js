@@ -36,10 +36,16 @@ nameInput.addEventListener("input", () => {
   displayHighestScore();
 });
 
-// Start the game when the form is submitted
 playerForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+  handleGamePlay(event);
+});
 
+document.addEventListener("DOMContentLoaded", () => {
+  showScreen("title-screen");
+});
+
+// Start the game when the form is submitted
+function startGame() {
   const playerName = nameInput.value.trim();
   const players = getPlayers();
   const playerKey = playerName.toLowerCase();
@@ -51,8 +57,7 @@ playerForm.addEventListener("submit", (event) => {
       highestScore: 0,
     };
   }
-
-  // Save player information
   savePlayers(players);
+  // Save player information
   localStorage.setItem("currentPlayer", playerKey);
-});
+}

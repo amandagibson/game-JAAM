@@ -137,6 +137,7 @@ function handleRoundComplete() {
 
 //this is the conneting point from the wheel spin to the start of a new round
 function startRound(category) {
+  showScreen("game-container");
   resetRoundState();
   roundState.currentCategory = category;
   roundState.questionsPerRound = calculateQuestionsPerRound();
