@@ -1,14 +1,5 @@
 // move these constants to a config file or a separate constants file?
 const FEEDBACK_DELAY_MS = 500;
-const STARTING_LIVES = 3;
-
-//move to state
-let currentLevel = 1;
-let playerLives = STARTING_LIVES; // makes a copy of the starting lives on file load
-let currentCategory = "artLiterature"; //default category for testing, should be set by the wheel spin
-let questionsPerRound = 5;
-let currentCategoryQuestions = [];
-let currentQuestionIndex = 0;
 
 //map the category to the corresponding question bank
 const questionBank = {
@@ -31,7 +22,9 @@ const questionBank = {
 //calculate how many questions based on the level when the number of questions starts at 5 and then increases by 1 every three levels
 function calculateQuestionsPerRound() {
   const baseQuestions = 5;
-  const additionalQuestions = Math.floor((currentLevel - 1) / 3);
+  const additionalQuestions = Math.floor(
+    (gameState.currentLevel - 1) / LEVELS_PER_EXTRA_QUESTION,
+  );
   return baseQuestions + additionalQuestions;
 }
 
@@ -45,40 +38,42 @@ function shuffleArray(array) {
 }
 
 function generateQuestions(categoryQuestionBank) {
-  if (categoryQuestionBank.length > 0 && questionsPerRound > 0) {
+  if (categoryQuestionBank.length > 0 && roundState.questionsPerRound > 0) {
     console.log(
-      `Found ${categoryQuestionBank.length} available questions for category: ${currentCategory}`,
+      `Found ${categoryQuestionBank.length} available questions for category: ${roundState.currentCategory}`,
     );
     //build a randomized list of questions for the round using the Fisher-Yates shuffle algo
-    currentCategoryQuestions = shuffleArray(categoryQuestionBank).slice(
-      0,
-      questionsPerRound,
-    );
+    roundState.currentCategoryQuestions = shuffleArray(
+      categoryQuestionBank,
+    ).slice(0, roundState.questionsPerRound);
     console.log(
-      `Selected the following ${questionsPerRound} questions for level ${currentLevel}:`,
-      currentCategoryQuestions,
+      `Selected the following ${roundState.questionsPerRound} questions for level ${gameState.currentLevel}:`,
+      roundState.currentCategoryQuestions,
     );
   } else {
-    currentCategoryQuestions = [];
+    roundState.currentCategoryQuestions = [];
     console.error(
       "Current category or number of questions is not set. Cannot generate questions.",
-      { currentCategory },
-      { questionsPerRound },
+      { currentCategory: roundState.currentCategory },
+      { questionsPerRound: roundState.questionsPerRound },
     );
     //TODO: present the wheel spin again to select a new category
     // spinWheel();
   }
 
-  if (currentCategoryQuestions.length < questionsPerRound) {
+  if (
+    roundState.currentCategoryQuestions.length < roundState.questionsPerRound
+  ) {
     console.warn(
-      `Not enough questions in category "${currentCategory}". Requested: ${questionsPerRound}, Available: ${currentCategoryQuestions.length}`,
+      `Not enough questions in category "${roundState.currentCategory}". Requested: ${roundState.questionsPerRound}, Available: ${roundState.currentCategoryQuestions.length}`,
     );
   }
-  return currentCategoryQuestions;
+  return roundState.currentCategoryQuestions;
 }
 
 function renderCurrentQuestion() {
-  const currentQuestion = currentCategoryQuestions[currentQuestionIndex];
+  const currentQuestion =
+    roundState.currentCategoryQuestions[roundState.currentQuestionIndex];
 
   if (!currentQuestion || !currentQuestion.options) {
     handleRoundComplete();
@@ -86,11 +81,11 @@ function renderCurrentQuestion() {
   }
 
   renderHud({
-    level: currentLevel,
-    category: currentCategory,
-    questionNumber: currentQuestionIndex + 1,
-    totalQuestions: currentCategoryQuestions.length,
-    lives: playerLives,
+    level: gameState.currentLevel,
+    category: roundState.currentCategory,
+    questionNumber: roundState.currentQuestionIndex + 1,
+    totalQuestions: roundState.currentCategoryQuestions.length,
+    lives: gameState.playerLives,
     maxLives: STARTING_LIVES,
   });
 
@@ -115,44 +110,43 @@ function handleAnswer(currentQuestion, selectedOptionIndex, optionButton) {
       console.log("Game over.");
       return;
     }
-    currentQuestionIndex += 1;
+    roundState.currentQuestionIndex += 1;
     renderCurrentQuestion();
   }, FEEDBACK_DELAY_MS);
 }
 
 function loseLife() {
-  playerLives -= 1;
-  renderLives(playerLives, STARTING_LIVES);
-  console.log(`Lives remaining: ${playerLives}`);
+  gameState.playerLives -= 1;
+  renderLives(gameState.playerLives, STARTING_LIVES);
+  console.log(`Lives remaining: ${gameState.playerLives}`);
 }
 
 function isGameOver() {
-  return playerLives <= 0;
+  return gameState.playerLives <= 0;
 }
 
 function handleRoundComplete() {
   console.log("The round is complete.");
-  currentLevel += 1;
-  //reset the round state for the next round
-  // resetRoundState();
+  gameState.currentLevel += 1;
   //return to the wheel spin to select a new category for the next round
+  resetRoundState();
   console.log(
-    `Level up! Now at level ${currentLevel}. Returning to wheel spin for next category selection.`,
+    `Level up! Now at level ${gameState.currentLevel}. Returning to wheel spin for next category selection.`,
   );
 }
 
-//TODO: this is the conneting point from the wheel spin to the start of a new round
-//update to take a `category` parameter selected from the wheel spin, then this function is called to start the round with the selected category
-function startRound() {
-  // setting the value to 0 here ensures that the round starts from the first question every time startRound is called
-  currentQuestionIndex = 0;
-  questionsPerRound = calculateQuestionsPerRound();
+//this is the conneting point from the wheel spin to the start of a new round
+function startRound(category) {
+  showScreen("game-container");
+  resetRoundState();
+  roundState.currentCategory = category;
+  roundState.questionsPerRound = calculateQuestionsPerRound();
   console.log(
-    `Starting round ${currentLevel} with ${playerLives} lives and ${questionsPerRound} questions from the category: ${currentCategory}`,
+    `Starting round ${gameState.currentLevel} with ${gameState.playerLives} lives and ${roundState.questionsPerRound} questions from the category: ${roundState.currentCategory}`,
   );
   //generate the questions for the round here so they are fresh
-  const categoryQuestionBank = questionBank[currentCategory] || [];
+  const categoryQuestionBank = questionBank[roundState.currentCategory] || [];
   generateQuestions(categoryQuestionBank);
-  if (currentCategoryQuestions.length === 0) return; // nothing to play, the wheel should pick again here
+  if (roundState.currentCategoryQuestions.length === 0) return; // nothing to play, the wheel should pick again here
   renderCurrentQuestion();
 }
