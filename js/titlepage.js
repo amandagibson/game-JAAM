@@ -17,11 +17,17 @@ function getPlayers() {
     return Object.create(null);
   }
 }
+
 // Save players
 function savePlayers(players) {
-  localStorage.setItem("players", JSON.stringify(players));
+  try {
+    localStorage.setItem("players", JSON.stringify(players));
+    return true;
+  } catch (error) {
+    console.error("Could not save players:", error);
+    return false;
+  }
 }
-
 // Display the player's highest score
 function displayHighestScore() {
   const playerName = nameInput.value.trim().toLowerCase();
