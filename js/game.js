@@ -112,8 +112,8 @@ function handleAnswer(currentQuestion, selectedOptionIndex, optionButton) {
 
 function handleTimeout() {
   console.log("Time's up.");
-
   lockOptions();
+  lockLifelines();
   loseLife();
   advanceAfterFeedback();
 }
