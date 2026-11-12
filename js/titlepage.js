@@ -42,7 +42,7 @@ const musicToggle = document.querySelector("#music-toggle");
 
 backgroundMusic.volume = 0.3;
 
-// Track if the user manually turned the music off
+// Track if the user manually turned data-screen hiddenthe music off
 let musicDisabledByUser = false;
 
 // Update the music button

@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="styles/layout.css" />
     <link rel="stylesheet" href="styles/titlepage.css" />
     <link rel="stylesheet" href="styles/game.css" />
-
+    <link rel="stylesheet" href="styles/wheel.css" />
+    <!-- keep state.js at the top of the scripts so it loads first -->
+    <script defer src="js/state.js"></script>
+    <!-- question banks -->
     <script defer src="questions/art-literature.js"></script>
     <script defer src="questions/film-tv.js"></script>
     <script defer src="questions/music.js"></script>
@@ -24,10 +27,11 @@
     <script defer src="questions/sports.js"></script>
     <script defer src="questions/videogames.js"></script>
     <!-- add new files here -->
-    <script defer src="js/state.js"></script>
     <script defer src="js/titlepage.js"></script>
     <script defer src="js/quiz-render.js"></script>
     <script defer src="js/game.js"></script>
+    <script defer src="js/category-select.js"></script>
+
     <!-- keep main.js at the end of the scripts so it loads last -->
     <script defer src="js/main.js"></script>
   </head>
@@ -77,6 +81,45 @@
       </div>
     </main>
     <!-- END QUIZ Title Page -->
+
+    <!-- START WHEEL SCREEN ELEMENTS -->
+    <div id="wheel-screen" data-screen hidden>
+      <div class="wheel-wrapper">
+        <header class="top-bar">
+          <span class="level"
+            >Level <span id="wheel-level-display">1</span></span
+          >
+
+          <span class="money"
+            >Money: $<span id="wheel-money-display">0</span></span
+          >
+
+          <div class="lives">
+            <span>Lives:</span>
+            <div class="hearts" id="wheel-lives-display" role="img"></div>
+          </div>
+        </header>
+
+        <div class="wheel-card">
+          <div class="wheel-container">
+            <div class="pointer"></div>
+            <canvas id="wheel-canvas" width="400" height="400"></canvas>
+          </div>
+
+          <h2 id="selected-category-display">
+            Spin the wheel to choose a category!
+          </h2>
+
+          <button type="button" id="spin-button">Spin Wheel</button>
+
+          <div id="wheel-actions" class="visually-hidden">
+            <button type="button" id="confirm-category-btn">Start Round</button>
+            <button type="button" id="respin-btn">Spin Again ($200)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END WHEEL SCREEN ELEMENTS -->
 
     <!-- START QUIZ SCREEN ELEMENTS -->
 
