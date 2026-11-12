@@ -81,7 +81,7 @@ function renderCurrentQuestion() {
     lives: gameState.playerLives,
     maxLives: STARTING_LIVES,
   });
-
+  resetLifelineButtons();
   renderQuestion(currentQuestion, (optionIndex, optionButton) =>
     handleAnswer(currentQuestion, optionIndex, optionButton),
   );
@@ -92,6 +92,7 @@ function handleAnswer(currentQuestion, selectedOptionIndex, optionButton) {
   console.log(isCorrect ? "Correct answer." : "Incorrect answer.");
 
   lockOptions();
+  lockLifelines();
   markAnswer(optionButton, isCorrect);
 
   if (!isCorrect) {
