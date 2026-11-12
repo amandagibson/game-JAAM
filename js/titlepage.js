@@ -5,13 +5,18 @@ const highestScoreDisplay = document.getElementById("highestScore");
 // Get saved players
 function getPlayers() {
   try {
-    return JSON.parse(localStorage.getItem("players")) || {};
+    const players = JSON.parse(localStorage.getItem("players"));
+
+    if (players && typeof players === "object" && !Array.isArray(players)) {
+      return players;
+    }
+
+    return {};
   } catch (error) {
     console.error("Could not load saved players:", error);
     return {};
   }
 }
-
 // Save players
 function savePlayers(players) {
   localStorage.setItem("players", JSON.stringify(players));
