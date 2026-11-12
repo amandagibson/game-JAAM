@@ -4,7 +4,12 @@ const highestScoreDisplay = document.getElementById("highestScore");
 
 // Get saved players
 function getPlayers() {
-  return JSON.parse(localStorage.getItem("players")) || {};
+  try {
+    return JSON.parse(localStorage.getItem("players")) || {};
+  } catch (error) {
+    console.error("Could not load saved players:", error);
+    return {};
+  }
 }
 
 // Save players
