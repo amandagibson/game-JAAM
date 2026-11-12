@@ -27,7 +27,6 @@
     <script defer src="questions/sports.js"></script>
     <script defer src="questions/videogames.js"></script>
     <!-- add new files here -->
-    <script defer src="js/state.js"></script>
     <script defer src="js/titlepage.js"></script>
     <script defer src="js/quiz-render.js"></script>
     <script defer src="js/game.js"></script>
@@ -42,19 +41,6 @@
       <video autoplay muted loop playsinline id="background-video">
         <source src="assets/videos/245751.mp4" type="video/mp4" />
       </video>
-
-      <audio id="background-music" loop>
-        <source src="assets/sounds/christmas-theme.mp3" type="audio/mpeg" />
-      </audio>
-
-      <button
-        type="button"
-        id="music-toggle"
-        aria-label="Turn music on"
-        aria-pressed="false"
-      >
-        🎵
-      </button>
 
       <audio id="background-music" loop>
         <source src="assets/sounds/christmas-theme.mp3" type="audio/mpeg" />
@@ -97,7 +83,7 @@
     <!-- END QUIZ Title Page -->
 
     <!-- START WHEEL SCREEN ELEMENTS -->
-    <div id="wheel-screen">
+    <div id="wheel-screen" data-screen hidden>
       <div class="wheel-container">
         <!-- Top pointer indicating the selected category -->
         <div class="pointer"></div>
