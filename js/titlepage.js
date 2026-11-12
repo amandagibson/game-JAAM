@@ -12,15 +12,15 @@ function displayHighestScore() {
   highestScoreDisplay.textContent = `$${score}`;
 }
 
-// Set the browser's built-in validation message
-nameInput.setCustomValidity("What should we call you?");
-
-// Listen for name input
-nameInput.addEventListener("input", () => {
+function validateNameInput() {
   nameInput.setCustomValidity(
     nameInput.value.trim() ? "" : "What should we call you?",
   );
-});
+}
+
+// Validate immediately on load (handles browser autofill/refresh) and on input
+validateNameInput();
+nameInput.addEventListener("input", validateNameInput);
 
 // Background music
 const backgroundMusic = document.querySelector("#background-music");
@@ -93,4 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // Start the game when the form is submitted
 function startGame() {
   gameState.playerName = nameInput.value.trim();
+  playerForm.reset();
+  validateNameInput();
 }
