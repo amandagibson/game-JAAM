@@ -143,6 +143,37 @@
   padding: 1.25rem 2rem;
 }
 
+/* Lifeline Row Layout */
+#lifelines-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+#lifelines-container button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 0;
+  flex: 0 1 auto;
+  margin: 0;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+#lifelines-container button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Visual feedback for 50/50 eliminated answers */
 .option-btn.eliminated {
   opacity: 0.25;
   pointer-events: none;
