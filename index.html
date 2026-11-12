@@ -27,6 +27,7 @@
     <script defer src="questions/sports.js"></script>
     <script defer src="questions/videogames.js"></script>
     <!-- add new files here -->
+    <script defer src="js/state.js"></script>
     <script defer src="js/titlepage.js"></script>
     <script defer src="js/quiz-render.js"></script>
     <script defer src="js/game.js"></script>
@@ -36,49 +37,64 @@
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <!-- START TITLE SCREEN ELEMENTS -->
-    <video autoplay muted loop playsinline id="background-video">
-      <source src="assets/videos/245751.mp4" type="video/mp4" />
-    </video>
+    <!-- START QUIZ Title Page -->
+    <main id="title-screen" data-screen>
+      <video autoplay muted loop playsinline id="background-video">
+        <source src="assets/videos/245751.mp4" type="video/mp4" />
+      </video>
 
-    <audio id="background-music" loop>
-      <source src="assets/sounds/christmas-theme.mp3" type="audio/mpeg" />
-    </audio>
+      <audio id="background-music" loop>
+        <source src="assets/sounds/christmas-theme.mp3" type="audio/mpeg" />
+      </audio>
 
-    <button
-      type="button"
-      id="music-toggle"
-      aria-label="Turn music on"
-      aria-pressed="false"
-    >
-      🎵
-    </button>
+      <button
+        type="button"
+        id="music-toggle"
+        aria-label="Turn music on"
+        aria-pressed="false"
+      >
+        🎵
+      </button>
 
-    <img
-      src="assets/images/SpintellectLogo.svg"
-      alt="Spintellect logo"
-      class="game-logo"
-    />
+      <audio id="background-music" loop>
+        <source src="assets/sounds/christmas-theme.mp3" type="audio/mpeg" />
+      </audio>
 
-    <form id="playerForm">
-      <input
-        type="text"
-        id="playerName"
-        name="playerName"
-        placeholder="Enter your name"
-        required
+      <button
+        type="button"
+        id="music-toggle"
+        aria-label="Turn music on"
+        aria-pressed="false"
+      >
+        🎵
+      </button>
+
+      <img
+        src="assets/images/SpintellectLogo.svg"
+        alt="Spintellect logo"
+        class="game-logo"
       />
 
-      <button type="submit" id="startGame">Start Game</button>
-    </form>
+      <form id="playerForm">
+        <input
+          type="text"
+          id="playerName"
+          name="playerName"
+          placeholder="Enter your name"
+          required
+        />
 
-    <div id="highestScoreDisplay">
-      <h3>
-        Highest Score:
-        <span id="highestScore">0</span>
-      </h3>
-    </div>
-    <!-- END TITLE SCREEN ELEMENTS-->
+        <button type="submit" id="startGame">Start Game</button>
+      </form>
+
+      <div id="highestScoreDisplay">
+        <h3>
+          Highest Score:
+          <span id="highestScore">0</span>
+        </h3>
+      </div>
+    </main>
+    <!-- END QUIZ Title Page -->
 
     <!-- START WHEEL SCREEN ELEMENTS -->
     <div id="wheel-screen">
@@ -105,9 +121,9 @@
     <!-- END WHEEL SCREEN ELEMENTS -->
 
     <!-- START QUIZ SCREEN ELEMENTS -->
-    <div id="game-container" class="visually-hidden">
-      <h1 class="visually-hidden">Spintellect</h1>
 
+    <div id="game-container" data-screen hidden>
+      <h1 class="visually-hidden">Spintellect</h1>
       <div id="quiz-screen">
         <header class="top-bar">
           <span class="level">Level <span id="level-display"></span></span>

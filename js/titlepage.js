@@ -36,28 +36,6 @@ nameInput.addEventListener("input", () => {
   displayHighestScore();
 });
 
-// Start the game when the form is submitted
-playerForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const playerName = nameInput.value.trim();
-  const players = getPlayers();
-  const playerKey = playerName.toLowerCase();
-
-  // Create a new player if they don't exist
-  if (!players[playerKey]) {
-    players[playerKey] = {
-      name: playerName,
-      highestScore: 0,
-    };
-  }
-
-  // Save player information
-  savePlayers(players);
-  localStorage.setItem("currentPlayer", playerKey);
-});
-
-// Background music
 // Background music
 const backgroundMusic = document.querySelector("#background-music");
 const musicToggle = document.querySelector("#music-toggle");
@@ -116,3 +94,29 @@ musicToggle.addEventListener("click", async () => {
     backgroundMusic.pause();
   }
 });
+
+playerForm.addEventListener("submit", (event) => {
+  handleGamePlay(event);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  showScreen("title-screen");
+});
+
+// Start the game when the form is submitted
+function startGame() {
+  const playerName = nameInput.value.trim();
+  const players = getPlayers();
+  const playerKey = playerName.toLowerCase();
+
+  // Create a new player if they don't exist
+  if (!players[playerKey]) {
+    players[playerKey] = {
+      name: playerName,
+      highestScore: 0,
+    };
+  }
+  savePlayers(players);
+  // Save player information
+  localStorage.setItem("currentPlayer", playerKey);
+}
