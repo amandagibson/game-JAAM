@@ -1,40 +1,26 @@
 const nameInput = document.getElementById("playerName");
 const playerForm = document.getElementById("playerForm");
 const highestScoreDisplay = document.getElementById("highestScore");
+const highScoreHolderDisplay = document.getElementById("highScoreHolder");
 
-// Get saved players
-function getPlayers() {
-  return JSON.parse(localStorage.getItem("players")) || {};
-}
-
-// Save players
-function savePlayers(players) {
-  localStorage.setItem("players", JSON.stringify(players));
-}
-
-// Display the player's highest score
+// Display the global highest score and holder
 function displayHighestScore() {
-  const playerName = nameInput.value.trim().toLowerCase();
-  const players = getPlayers();
+  const score = loadHighScore();
+  const holder = gameState.highScoreHolder;
 
-  if (players[playerName]) {
-    highestScoreDisplay.textContent = players[playerName].highestScore;
-  } else {
-    highestScoreDisplay.textContent = 0;
-  }
+  highScoreHolderDisplay.textContent = score > 0 && holder ? holder : "—";
+  highestScoreDisplay.textContent = `$${score}`;
 }
 
-// Set the browser's built-in validation message
-nameInput.setCustomValidity("What should we call you?");
-
-// Listen for name input
-nameInput.addEventListener("input", () => {
+function validateNameInput() {
   nameInput.setCustomValidity(
     nameInput.value.trim() ? "" : "What should we call you?",
   );
+}
 
-  displayHighestScore();
-});
+// Validate immediately on load (handles browser autofill/refresh) and on input
+validateNameInput();
+nameInput.addEventListener("input", validateNameInput);
 
 // Background music
 const backgroundMusic = document.querySelector("#background-music");
@@ -100,23 +86,13 @@ playerForm.addEventListener("submit", (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  displayHighestScore();
   showScreen("title-screen");
 });
 
 // Start the game when the form is submitted
 function startGame() {
-  const playerName = nameInput.value.trim();
-  const players = getPlayers();
-  const playerKey = playerName.toLowerCase();
-
-  // Create a new player if they don't exist
-  if (!players[playerKey]) {
-    players[playerKey] = {
-      name: playerName,
-      highestScore: 0,
-    };
-  }
-  savePlayers(players);
-  // Save player information
-  localStorage.setItem("currentPlayer", playerKey);
+  gameState.playerName = nameInput.value.trim();
+  playerForm.reset();
+  validateNameInput();
 }

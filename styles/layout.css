@@ -47,3 +47,24 @@
   justify-content: space-between;
   padding: 0 0.5rem;
 }
+
+#result-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#result-view .question {
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+#result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: 2.5rem;
+}

@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spintellect</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/images/SpintellectLogo.svg"
+    />
     <link rel="stylesheet" href="styles/base.css" />
     <link rel="stylesheet" href="styles/layout.css" />
     <link rel="stylesheet" href="styles/titlepage.css" />
@@ -75,10 +80,11 @@
       </form>
 
       <div id="highestScoreDisplay">
-        <h3>
-          Highest Score:
-          <span id="highestScore">0</span>
-        </h3>
+        <h3>High Score</h3>
+        <div class="high-score-row">
+          <span id="highScoreHolder">—</span>
+          <span id="highestScore">$0</span>
+        </div>
       </div>
     </main>
     <!-- END QUIZ Title Page -->
@@ -130,6 +136,8 @@
         <header class="top-bar">
           <span class="level">Level <span id="level-display"></span></span>
 
+          <span class="money">Money: $<span id="money-display">0</span></span>
+
           <div class="lives">
             <span>Lives:</span>
             <div class="hearts" id="lives-display" role="img"></div>
@@ -138,6 +146,9 @@
 
         <section class="question-card">
           <div id="question-view">
+            <p class="timer" id="timer" role="timer">
+              <span id="timer-display"></span>s
+            </p>
             <p class="question">
               <span class="question-mark" aria-hidden="true">?</span>
               <span id="question-text"></span>

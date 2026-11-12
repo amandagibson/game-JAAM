@@ -25,6 +25,7 @@ function renderHud({
   totalQuestions,
   lives,
   maxLives,
+  money,
 }) {
   const label = categoryLabels[category] ?? category;
   document.getElementById("category-label").textContent = label;
@@ -32,6 +33,7 @@ function renderHud({
   document.getElementById("question-counter").textContent =
     `Question ${questionNumber}/${totalQuestions}`;
   renderLives(lives, maxLives);
+  renderMoney(money);
 }
 
 function renderQuestion(question, onAnswer) {
@@ -78,12 +80,28 @@ function showQuestionView() {
 }
 
 // shared by round complete and game over
-function renderResult({ title, message, actions }) {
+function renderResult({ title, message, highlight, actions }) {
   document.getElementById("question-view").hidden = true;
   document.getElementById("round-info").hidden = true;
   document.getElementById("result-view").hidden = false;
   document.getElementById("result-title").textContent = title;
-  document.getElementById("result-message").textContent = message;
+
+  const messageEl = document.getElementById("result-message");
+  messageEl.innerHTML = "";
+
+  const lines = Array.isArray(message) ? message : [message];
+  lines.forEach((line) => {
+    const lineEl = document.createElement("span");
+    lineEl.textContent = line;
+    messageEl.appendChild(lineEl);
+  });
+
+  if (highlight) {
+    const highlightEl = document.createElement("span");
+    highlightEl.classList.add("result-highlight");
+    highlightEl.textContent = highlight;
+    messageEl.appendChild(highlightEl);
+  }
 
   const actionsContainer = document.getElementById("result-actions");
   actionsContainer.innerHTML = "";
@@ -106,13 +124,31 @@ function renderRoundComplete({ category, newLevel, onSpinAgain }) {
   });
 }
 
-function renderGameOver({ level, onPlayAgain, onBackToTitle }) {
+function renderGameOver({ level, isNewHighScore, onPlayAgain, onBackToTitle }) {
+  const player = gameState.playerName || "Player";
+  const scoreText = isNewHighScore
+    ? `New high score: $${gameState.highScore}!`
+    : `Final score: $${gameState.currentScore}`;
+
   renderResult({
     title: "Game over",
-    message: `You ran out of lives on level ${level}.`,
+    message: [
+      `Well played, ${player}!`,
+      `You ran out of lives on level ${level}.`,
+    ],
+    highlight: scoreText,
     actions: [
       { label: "Play again", onClick: onPlayAgain },
-      { label: "Back to title", onClick: onBackToTitle },
+      { label: "Back to start", onClick: onBackToTitle },
     ],
   });
+}
+
+function renderTimer(seconds) {
+  document.getElementById("timer-display").textContent = seconds;
+  document.getElementById("timer").classList.toggle("timer--low", seconds <= 5);
+}
+
+function renderMoney(amount) {
+  document.getElementById("money-display").textContent = amount;
 }
