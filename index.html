@@ -93,46 +93,30 @@
         </header>
 
         <section class="question-card">
-          <p class="question">
-            <span class="question-mark" aria-hidden="true">?</span>
-            <span id="question-text"></span>
-          </p>
-          <div id="options-container"></div>
+          <div id="question-view">
+            <p class="question">
+              <span class="question-mark" aria-hidden="true">?</span>
+              <span id="question-text"></span>
+            </p>
+            <div id="options-container"></div>
+          </div>
+
+          <div id="result-view" hidden>
+            <p class="question">
+              <span class="question-mark" aria-hidden="true">!</span>
+              <span id="result-title"></span>
+            </p>
+            <p id="result-message"></p>
+            <div id="result-actions"></div>
+          </div>
         </section>
 
-        <footer class="round-info">
+        <footer class="round-info" id="round-info">
           <span id="category-label"></span>
           <span id="question-counter"></span>
         </footer>
       </div>
       <!-- END QUIZ SCREEN ELEMENTS -->
     </div>
-
-    <!-- START ROUND COMPLETE SCREEN -->
-    <div id="round-complete-screen" data-screen hidden>
-      <section class="round-complete">
-        <h2>Round complete!</h2>
-        <p>You finished the <span id="completed-category"></span> round.</p>
-        <p class="level-up">
-          Level up! You're now on level <span id="new-level"></span>.
-        </p>
-        <button type="button" id="spin-again-btn">Spin the wheel</button>
-      </section>
-    </div>
-    <!-- END ROUND COMPLETE SCREEN -->
-
-    <!-- START GAME OVER SCREEN -->
-    <div id="game-over-screen" data-screen hidden>
-      <section class="game-over">
-        <h2>Game over</h2>
-        <p>You ran out of lives.</p>
-        <p class="final-level">
-          You reached level <span id="final-level"></span>.
-        </p>
-        <button type="button" id="play-again-btn">Play again</button>
-        <button type="button" id="back-to-title-btn">Back to start</button>
-      </section>
-    </div>
-    <!-- END GAME OVER SCREEN -->
   </body>
 </html>

@@ -35,6 +35,7 @@ function renderHud({
 }
 
 function renderQuestion(question, onAnswer) {
+  showQuestionView();
   document.getElementById("question-text").textContent = question.q;
 
   const optionsContainer = document.getElementById("options-container");
@@ -70,12 +71,48 @@ function renderLives(lives, maxLives) {
   }).join("");
 }
 
-function renderRoundComplete({ category, newLevel }) {
-  document.getElementById("completed-category").textContent =
-    categoryLabels[category] ?? category;
-  document.getElementById("new-level").textContent = newLevel;
+function showQuestionView() {
+  document.getElementById("question-view").hidden = false;
+  document.getElementById("round-info").hidden = false;
+  document.getElementById("result-view").hidden = true;
 }
 
-function renderGameOver({ level }) {
-  document.getElementById("final-level").textContent = level;
+// shared by round complete and game over
+function renderResult({ title, message, actions }) {
+  document.getElementById("question-view").hidden = true;
+  document.getElementById("round-info").hidden = true;
+  document.getElementById("result-view").hidden = false;
+  document.getElementById("result-title").textContent = title;
+  document.getElementById("result-message").textContent = message;
+
+  const actionsContainer = document.getElementById("result-actions");
+  actionsContainer.innerHTML = "";
+  actions.forEach(({ label, onClick }) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = label;
+    button.classList.add("option-btn");
+    button.addEventListener("click", onClick);
+    actionsContainer.appendChild(button);
+  });
+}
+
+function renderRoundComplete({ category, newLevel, onSpinAgain }) {
+  const label = categoryLabels[category] ?? category;
+  renderResult({
+    title: "Round complete!",
+    message: `You finished the ${label} round and moved up to level ${newLevel}.`,
+    actions: [{ label: "Spin the wheel", onClick: onSpinAgain }],
+  });
+}
+
+function renderGameOver({ level, onPlayAgain, onBackToTitle }) {
+  renderResult({
+    title: "Game over",
+    message: `You ran out of lives on level ${level}.`,
+    actions: [
+      { label: "Play again", onClick: onPlayAgain },
+      { label: "Back to title", onClick: onBackToTitle },
+    ],
+  });
 }

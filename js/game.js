@@ -42,7 +42,10 @@ function generateQuestions(categoryQuestionBank) {
     roundState.currentCategoryQuestions = shuffleArray(
       categoryQuestionBank,
     ).slice(0, roundState.questionsPerRound);
-
+    console.log(
+      `Selected the following ${roundState.questionsPerRound} questions for level ${gameState.currentLevel}:`,
+      roundState.currentCategoryQuestions,
+    );
     if (
       roundState.currentCategoryQuestions.length < roundState.questionsPerRound
     ) {
@@ -127,15 +130,13 @@ function handleRoundComplete() {
   renderRoundComplete({
     category: completedCategory,
     newLevel: gameState.currentLevel,
+    onSpinAgain: handleSpinAgain,
   });
-  showScreen("round-complete-screen");
 }
 
-function handleGameOver() {
-  console.log("Game over.");
-
-  renderGameOver({ level: gameState.currentLevel });
-  showScreen("game-over-screen");
+// the connecting point from the round-complete screen back to the wheel
+function handleSpinAgain() {
+  showScreen("wheel-screen"); // TODO: placeholder until the wheel PR merges
 }
 
 function handlePlayAgain() {
@@ -150,24 +151,16 @@ function handleBackToTitle() {
   showScreen("title-screen");
 }
 
-// the connecting point from the round-complete screen back to the wheel
-function handleSpinAgain() {
-  // TODO: swap in the real wheel screen id once the wheel PR is merged
-  showScreen("wheel-screen");
+function handleGameOver() {
+  console.log("Game over.");
+
+  renderGameOver({
+    level: gameState.currentLevel,
+    onPlayAgain: handlePlayAgain,
+    onBackToTitle: handleBackToTitle,
+  });
 }
 
-document
-  .getElementById("spin-again-btn")
-  .addEventListener("click", handleSpinAgain);
-
-document
-  .getElementById("play-again-btn")
-  .addEventListener("click", handlePlayAgain);
-document
-  .getElementById("back-to-title-btn")
-  .addEventListener("click", handleBackToTitle);
-
-  
 //this is the conneting point from the wheel spin to the start of a new round
 function startRound(category) {
   showScreen("game-container");
