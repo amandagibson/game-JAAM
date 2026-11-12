@@ -21,5 +21,4 @@ function handleGamePlay(event) {
 
   startGame();
   startWheel();
-  //  startRound("history");
 }

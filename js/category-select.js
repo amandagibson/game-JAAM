@@ -106,9 +106,8 @@ function handleSpinComplete(selectedCategory) {
   categoryDisplay.textContent = `Category: ${friendlyName}`;
 
   // Hide initial spin button and show Confirm / Respin buttons
-  spinButton.classList.add("visually-hidden");
-  wheelActions.classList.remove("visually-hidden");
-
+  spinButton.hidden = true;
+  wheelActions.hidden = false;
   // Disable respin button if the player has less than $200
   confirmBtn.disabled = false;
   respinBtn.disabled = gameState.playerMoney < respinCost;
@@ -128,7 +127,7 @@ respinBtn.addEventListener("click", () => {
     renderWheelHud();
     confirmBtn.disabled = true;
     respinBtn.disabled = true;
-    wheelActions.classList.add("visually-hidden");
+    wheelActions.hidden = true;
     categoryDisplay.textContent = "Spinning again...";
     spinWheel(handleSpinComplete);
   }
@@ -142,8 +141,8 @@ confirmBtn.addEventListener("click", () => {
 function startWheel() {
   // Reset UI state for a fresh spin
   spinButton.disabled = false;
-  spinButton.classList.remove("visually-hidden");
-  wheelActions.classList.add("visually-hidden");
+  spinButton.hidden = false;
+  wheelActions.hidden = true;
   categoryDisplay.textContent = "Spin the wheel to choose a category!";
 
   // Render the wheel on screen

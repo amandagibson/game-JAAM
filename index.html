@@ -112,7 +112,7 @@
 
           <button type="button" id="spin-button">Spin Wheel</button>
 
-          <div id="wheel-actions" class="visually-hidden">
+          <div id="wheel-actions" hidden>
             <button type="button" id="confirm-category-btn">Start Round</button>
             <button type="button" id="respin-btn">Spin Again ($200)</button>
           </div>
@@ -136,14 +136,25 @@
         </header>
 
         <section class="question-card">
-          <p class="question">
-            <span class="question-mark" aria-hidden="true">?</span>
-            <span id="question-text"></span>
-          </p>
-          <div id="options-container"></div>
+          <div id="question-view">
+            <p class="question">
+              <span class="question-mark" aria-hidden="true">?</span>
+              <span id="question-text"></span>
+            </p>
+            <div id="options-container"></div>
+          </div>
+
+          <div id="result-view" hidden>
+            <p class="question">
+              <span class="question-mark" aria-hidden="true">!</span>
+              <span id="result-title"></span>
+            </p>
+            <p id="result-message"></p>
+            <div id="result-actions"></div>
+          </div>
         </section>
 
-        <footer class="round-info">
+        <footer class="round-info" id="round-info">
           <span id="category-label"></span>
           <span id="question-counter"></span>
         </footer>
