@@ -163,6 +163,7 @@ function awardMoney(amount) {
 }
 
 function loseLife() {
+  roundState.lostLifeThisRound = true;
   gameState.playerLives -= 1;
   renderLives(gameState.playerLives, STARTING_LIVES);
   console.log(`Lives remaining: ${gameState.playerLives}`);
@@ -175,8 +176,15 @@ function isGameOver() {
 function handleRoundComplete() {
   console.log("The round is complete.");
   stopQuestionTimer();
-  // grab the category before resetRoundState() clears it
+
+  // Grab values before resetRoundState() clears them
   const completedCategory = roundState.currentCategory;
+  const isFlawless = !roundState.lostLifeThisRound;
+  const bonusAwarded = isFlawless ? FLAWLESS_ROUND_BONUS : 0;
+
+  if (bonusAwarded > 0) {
+    awardMoney(bonusAwarded);
+  }
 
   gameState.currentLevel += 1;
   console.log(`Level up! Now at level ${gameState.currentLevel}.`);
@@ -185,6 +193,7 @@ function handleRoundComplete() {
   renderRoundComplete({
     category: completedCategory,
     newLevel: gameState.currentLevel,
+    bonusAwarded: bonusAwarded,
     onSpinAgain: handleSpinAgain,
   });
 }

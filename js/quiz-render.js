@@ -115,11 +115,20 @@ function renderResult({ title, message, highlight, actions }) {
   });
 }
 
-function renderRoundComplete({ category, newLevel, onSpinAgain }) {
+function renderRoundComplete({
+  category,
+  newLevel,
+  bonusAwarded,
+  onSpinAgain,
+}) {
   const label = categoryLabels[category] ?? category;
+  const highlightText =
+    bonusAwarded > 0 ? `Flawless round! +$${bonusAwarded} bonus!` : "";
+
   renderResult({
     title: "Round complete!",
     message: `You finished the ${label} round and moved up to level ${newLevel}.`,
+    highlight: highlightText,
     actions: [{ label: "Spin the wheel", onClick: onSpinAgain }],
   });
 }
