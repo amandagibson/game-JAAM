@@ -125,6 +125,7 @@ spinButton.addEventListener("click", () => {
 respinBtn.addEventListener("click", () => {
   if (gameState.playerMoney >= respinCost && !gameState.isSpinning) {
     gameState.playerMoney -= respinCost;
+    renderWheelHud();
     confirmBtn.disabled = true;
     respinBtn.disabled = true;
     wheelActions.classList.add("visually-hidden");
@@ -148,4 +149,19 @@ function startWheel() {
   // Render the wheel on screen
   showScreen("wheel-screen");
   drawWheel();
+  renderWheelHud();
+}
+
+function renderWheelHud() {
+  document.getElementById("wheel-level-display").textContent =
+    gameState.currentLevel;
+  document.getElementById("wheel-money-display").textContent =
+    gameState.playerMoney;
+
+  const livesContainer = document.getElementById("wheel-lives-display");
+  livesContainer.setAttribute("aria-label", `Lives: ${gameState.playerLives}`);
+  livesContainer.innerHTML = Array.from({ length: STARTING_LIVES }, (_, i) => {
+    const lostClass = i < gameState.playerLives ? "" : " heart--lost";
+    return `<svg class="heart${lostClass}" viewBox="0 0 24 24" aria-hidden="true"><path d="${HEART_PATH}" /></svg>`;
+  }).join("");
 }

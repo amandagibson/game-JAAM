@@ -117,3 +117,21 @@
 #wheel-actions.visually-hidden {
   display: none;
 }
+
+.wheel-wrapper {
+  width: min(100%, 820px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.wheel-card {
+  width: 100%;
+  /* keep your existing .wheel-card padding, border-radius, background, and flex rules */
+}
+
+.money {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-2);
+}
