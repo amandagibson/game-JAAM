@@ -6,7 +6,7 @@ const wheelActions = document.getElementById("wheel-actions");
 const confirmBtn = document.getElementById("confirm-category-btn");
 const respinBtn = document.getElementById("respin-btn");
 const categoryDisplay = document.getElementById("selected-category-display");
-const respinCost = 200;
+const respinCost = 50;
 
 // Wheel properties
 const categories = Object.keys(questionBank);

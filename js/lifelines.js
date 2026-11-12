@@ -20,8 +20,8 @@ function lockLifelines() {
 function extraTime() {
   if (extraTimeBtn) extraTimeBtn.disabled = true;
 
-  // Ready to hook into your timer variable once implemented (e.g., roundState.timeRemaining += 10)
-  console.log("Extra Time lifeline used: +10s");
+  roundState.timeRemaining += 10;
+  renderTimer(roundState.timeRemaining);
 }
 
 // Removes 2 wrong answers from the 4 available

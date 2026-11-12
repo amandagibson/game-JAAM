@@ -142,3 +142,8 @@
   margin: 0;
   padding: 1.25rem 2rem;
 }
+
+.option-btn.eliminated {
+  opacity: 0.25;
+  pointer-events: none;
+}
