@@ -6,13 +6,12 @@ const wheelActions = document.getElementById("wheel-actions");
 const confirmBtn = document.getElementById("confirm-category-btn");
 const respinBtn = document.getElementById("respin-btn");
 const categoryDisplay = document.getElementById("selected-category-display");
-const respinCost = 200;
+const respinCost = 50;
 
 // Wheel properties
 const categories = Object.keys(questionBank);
 const numSlices = categories.length;
 const sliceAngle = (2 * Math.PI) / numSlices;
-// Wheel size assumes a 400px canvas, we can change this later if needed!
 const centerX = 200;
 const centerY = 200;
 const radius = 180;
